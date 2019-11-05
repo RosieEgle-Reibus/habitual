@@ -35,8 +35,6 @@ const getAllRewards = () => {
  }
 
 
-
-
 module.exports = {
     getAllRewards,
     getOneReward,

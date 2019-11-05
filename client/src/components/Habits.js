@@ -1,21 +1,16 @@
-/* Step 1 import React, { Component } and axios
- *
- */
+
 import React, { Component } from 'react'
 import axios from 'axios'
+import SingleHabit from './SingleHabit.jsx'
 
-/* Step 2
- * Rename this class to reflect the component being created
- *
- */
-export default class HelloWorld extends Component {
+export default class Habits extends Component {
 
     /* Step 3
     * Create a state for the component to store view data
     *
     */
     state = {
-        message: ''
+        habitList: []
     }
 
     /* Step 4
@@ -26,9 +21,10 @@ export default class HelloWorld extends Component {
     *   -REMINDER remember `setState` it is an async function
     */
     componentDidMount() {
-        axios.get('/api/helloworld')
+        axios.get('/api/habit')
             .then((res) => {
-                this.setState({message: res.data})
+                console.log(res.data)
+                this.setState({habitList: res.data})
             })
     }
 
@@ -39,10 +35,18 @@ export default class HelloWorld extends Component {
     *
     */
     render() {
+        const HabitListElements = this.state.habitList.map((habit) => {
+            return (
+                <div>
+                   
+                </div>
+            )
+        })
+
         return (
             <div>
                 {/* Accessing the value of message from the state object */}
-                <h1>{this.state.message}</h1>
+                <h1>Daily Habits You want to Work On</h1>
             </div>
         )
     }

@@ -37,7 +37,7 @@ rewardRouter.put('/:id', (req, res) => {
     })
 })
 
-//delte
+//delete
 rewardRouter.delete('/:id', (req, res) => {
     rewardApi.deleteReward(req.params.id)
     .then((deltedReward) => {
