@@ -18,6 +18,7 @@ const app = express()
  */
 const { habitRouter } = require('./controllers/habit.js')
 const { rewardRouter } = require('./controllers/reward.js')
+const { userRouter } = require('./controllers/user.js')
 
 /* Step 3
  *
@@ -51,6 +52,7 @@ app.use(express.static(`${__dirname}/client/build`))
  */
 app.use('/api/habit', habitRouter)
 app.use('/api/reward', rewardRouter)
+app.use('/api/user', userRouter)
 /* Step 5
  *
  * add catch all route to serve up the built react app for any request not made to our
