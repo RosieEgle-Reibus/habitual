@@ -11,27 +11,27 @@ const rewardCollection = mongoose.model('Reward', RewardSchema)
 
 //getAll 
 const getAllRewards = () => {
-    rewardCollection.find()
+   return rewardCollection.find()
 }
 
 //getOne
  const getOneReward = (rewardId) => {
-     rewardCollection.findById({_id: rewardId})
+     return rewardCollection.findById({_id: rewardId})
  }
 
  //create
  const createReward = (rewardData) => {
-     rewardCollection.create(rewardData)
+     return rewardCollection.create(rewardData)
  }
 
  //update
  const updateReward = (rewardId, rewardData) => {
-     rewardCollection.update({_id: rewardId}, rewardData)
+     return rewardCollection.update({_id: rewardId}, rewardData)
  }
 
  //delete
  const deleteReward =(rewardId) => {
-     rewardCollection.deleteOne({_id: rewardId})
+     return rewardCollection.deleteOne({_id: rewardId})
  }
 
 
