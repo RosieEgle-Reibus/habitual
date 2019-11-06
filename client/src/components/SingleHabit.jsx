@@ -5,9 +5,17 @@ import axios from 'axios'
 
 export default class SingleHabit extends Component {
     render() {
+        const {
+            habitId,
+            habit,
+            expectedTimesPerDay,
+            totalTimesCompleted,
+            difficulty
+        } = this.props
         return (
-            <div>
-                <h1>Hi</h1>
+            <div key={habitId}>
+                <h1>{habit}</h1>
+
             </div>
         )
     }
