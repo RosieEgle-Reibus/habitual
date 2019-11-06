@@ -6,12 +6,15 @@ export default class SingleReward extends Component {
         const {
             rewardId,
             reward,
-            level
+            level,
+            onRewardDeleteClick,
+            refreshRewardComponent
         } = this.props
         return (
             <div key={rewardId}>
                 <h1>{reward}</h1>
                 <h2>{level}</h2>
+                <button onClick={()=> onRewardDeleteClick(rewardId)}>Delete Reward</button>
             </div>
         )
     }

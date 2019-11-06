@@ -43,6 +43,14 @@ export default class Reward extends Component {
         this.setState(previousState)
     }
 
+    onRewardDeleteClick = (habitId) => {
+        axios.delete(`/api/reward/${habitId}`)
+        .then(() => {
+            this.refreshRewardComponent()
+        })
+    }
+
+
 
 
     render() {
@@ -52,7 +60,10 @@ export default class Reward extends Component {
                     <SingleReward
                         rewardId={reward._id}
                         reward={reward.reward}
-                        level={reward.level} />
+                        level={reward.level} 
+                        onRewardDeleteClick={this.onRewardDeleteClick}
+                        refreshRewardComponent={this.refreshRewardComponent}
+                        />
                 </div>
             )
         })
