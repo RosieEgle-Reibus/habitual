@@ -15,7 +15,8 @@ export default class Habits extends Component {
             habit: '',
             expectedTimesPerDay: '',
             difficulty: ''
-        }
+        },
+        createHabit: false
     }
     componentDidMount() {
         axios.get('/api/habit')
@@ -24,7 +25,7 @@ export default class Habits extends Component {
                 this.setState({ habitList: res.data })
             })
     }
-    
+
     refreshComponent = () => {
         axios.get('/api/habit')
             .then((res) => {
@@ -69,6 +70,11 @@ export default class Habits extends Component {
         })
     }
 
+    toggleCreateForm = () => {
+        const createHabit = !this.state.createHabit
+        this.setState({createHabit})
+    }
+
     
 
     
@@ -95,6 +101,8 @@ export default class Habits extends Component {
             <div>
                 {/* Accessing the value of message from the state object */}
                 <h1>Daily Habits You want to Work On</h1>
+                <button onClick={this.toggleCreateForm}>Add New Habit</button>
+                {this.state.createHabit ? 
                 <form onSubmit={this.createNewHabit}>
                     <label for="habit">Add a Habit</label>
                     <input
@@ -119,7 +127,7 @@ export default class Habits extends Component {
                         value={this.state.newHabit.difficulty} 
                         onChange={this.onCreateDifficulty}/>
                     <input type="Submit" value="Make a New Habit!" />
-                </form>
+                </form> : null }
                 {HabitListElements}
             </div>
         )
