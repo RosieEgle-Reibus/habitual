@@ -24,10 +24,20 @@ export default class Habits extends Component {
                 this.setState({ habitList: res.data })
             })
     }
+    refreshComponent() {
+        axios.get('/api/habit')
+            .then((res) => {
+                console.log(res.data)
+                this.setState({ habitList: res.data })
+            })
+    }
 
     createNewHabit = (event) => {
         event.preventDefault()
         axios.post('/api/habit', this.state.newHabit)
+        .then(() => {
+            this.refreshComponent()
+        })
     }
 
     onCreateHabit = (event) => {
@@ -51,6 +61,13 @@ export default class Habits extends Component {
         this.setState({previousState})
     }
 
+    onHabitDeleteClick = (habitId) => {
+        axios.delete(`/api/habit/${habitId}`)
+        .then(() => {
+            this.refreshComponent()
+        })
+    }
+
 
     render() {
         const HabitListElements = this.state.habitList.map((habit) => {
@@ -62,6 +79,7 @@ export default class Habits extends Component {
                         expectedTimesPerDay={habit.expectedTimesPerDay}
                         totalTimesCompleted={habit.totalTimesCompleted}
                         difficulty={habit.difficulty}
+                        onHabitDeleteClick={this.onHabitDeleteClick}
                     />
                 </div>
             )
