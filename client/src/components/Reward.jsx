@@ -53,6 +53,8 @@ export default class Reward extends Component {
 
 
 
+
+
     render() {
         const RewardListElements = this.state.rewardList.map((reward) => {
             return (
@@ -82,7 +84,7 @@ export default class Reward extends Component {
                         <label for="level">Is it a big, medium or small reward?</label>
                     <select id="level" 
                     name="level" 
-                    value={this.state.reward}
+                    value={this.state.level}
                     onChange={this.onCreateLevel}>
                         <option value="Small">Small</option>
                         <option value="Medium">Medium</option>
