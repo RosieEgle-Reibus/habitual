@@ -99,7 +99,6 @@ export default class Habits extends Component {
 
         return (
             <div>
-                {/* Accessing the value of message from the state object */}
                 <h1>Daily Habits You want to Work On</h1>
                 <button onClick={this.toggleCreateForm}>Add New Habit</button>
                 {this.state.createHabit ? 

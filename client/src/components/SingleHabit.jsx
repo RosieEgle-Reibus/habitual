@@ -10,7 +10,8 @@ export default class SingleHabit extends Component {
             habit: '',
             expectedTimesPerDay: '',
             difficulty: ''
-        }
+        },
+        editHabit: false
     }
    
     componentDidMount() {
@@ -47,13 +48,16 @@ export default class SingleHabit extends Component {
     changeSingleHabit = (event) => {
         event.preventDefault()
         const {refreshHabits} = this.props
-        
-        const { habitId} = this.state.changeHabit
-        
+        const { habitId} = this.state.changeHabitupd
         axios.put(`/api/habit/${habitId}`, this.state.changeHabit)
         .then(() => {
             refreshHabits()
         })
+    }
+
+    toggleEditForm = () => {
+        const editHabit = !this.state.editHabit
+        this.setState({editHabit})
     }
 
 
@@ -67,15 +71,16 @@ export default class SingleHabit extends Component {
             onHabitDeleteClick,
         } = this.props
 
-
-        
         return (
             <div key={habitId}>
                 <h1>{habit}</h1>
                 <h2>Difficulty: {difficulty}</h2>
                 <h2>How Many Times You would like to {habit} per day: {expectedTimesPerDay}</h2>
                 <button onClick={()=> onHabitDeleteClick(habitId)}>Delete Habit</button>
+                <button onClick={this.toggleEditForm}>Edit Habit</button>
+                
                 <div>
+                {this.state.editHabit ?
                     <form onSubmit={this.changeSingleHabit}>
                         <input 
                         type="String"
@@ -93,7 +98,7 @@ export default class SingleHabit extends Component {
                         value={this.state.changeHabit.difficulty}
                         onChange={this.onChangeToDifficulty}/>
                         <input type="Submit" value="Save Changes"/>
-                    </form>
+                    </form> : null }
                 </div>
 
             </div>
