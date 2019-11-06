@@ -6,7 +6,8 @@ export default class Reward extends Component {
     state = {
         rewardList: [],
         reward: '',
-        level: ''
+        level: '',
+        createReward: false
     }
     componentDidMount() {
         axios.get('/api/reward')
@@ -50,6 +51,10 @@ export default class Reward extends Component {
         })
     }
 
+    toggleCreateForm = () => {
+        const createReward = !this.state.createReward
+        this.setState({createReward})
+    }
 
 
 
@@ -72,6 +77,8 @@ export default class Reward extends Component {
         return (
             <div>
                 <h2>REWAAAAAARRRD Yo' Self</h2>
+                <button onClick={this.toggleCreateForm}>Add New Reward</button>
+                {this.state.createReward ? 
                 <form onSubmit={this.createNewReward}>
                     <label for="reward">Add a new way to reward yourself
                     </label>
@@ -91,7 +98,8 @@ export default class Reward extends Component {
                         <option value="Big">Big</option>
                         </select>
                     <input type="Submit" value="Create New Reward"/>
-                </form>
+                </form> : null }
+
                 {RewardListElements}
             </div>
         )

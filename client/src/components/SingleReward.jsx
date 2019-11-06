@@ -7,7 +7,9 @@ export default class SingleReward extends Component {
             rewardId: '',
             reward: '',
             level: ''
-        }
+        },
+        editReward: false
+
     }
 
     componentDidMount() {
@@ -39,6 +41,11 @@ export default class SingleReward extends Component {
         this.setState({ changeReward: newState })
     }
 
+    toggleEditForm = () => {
+        const editReward = !this.state.editReward
+        this.setState({editReward})
+    }
+
     render() {
         const {
             rewardId,
@@ -52,6 +59,8 @@ export default class SingleReward extends Component {
                 <h2>Level of Reward: {level}</h2>
                 <button onClick={() => onRewardDeleteClick(rewardId)}>
                     Delete Reward</button>
+                <button onClick={this.toggleEditForm}>Edit Reward</button>
+                {this.state.editReward ? 
                 <form onSubmit={this.changeSingleReward}>
                     <input
                         type="String"
@@ -67,7 +76,7 @@ export default class SingleReward extends Component {
                         <option value="Big">Big</option>
                     </select>
                     <input type="Submit" value="Save Changes" />
-                </form>
+                </form> :  null }
 
 
             </div>
