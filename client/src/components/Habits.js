@@ -24,7 +24,8 @@ export default class Habits extends Component {
                 this.setState({ habitList: res.data })
             })
     }
-    refreshComponent() {
+    
+    refreshComponent = () => {
         axios.get('/api/habit')
             .then((res) => {
                 console.log(res.data)
@@ -68,6 +69,9 @@ export default class Habits extends Component {
         })
     }
 
+    
+
+    
 
     render() {
         const HabitListElements = this.state.habitList.map((habit) => {
@@ -80,6 +84,8 @@ export default class Habits extends Component {
                         totalTimesCompleted={habit.totalTimesCompleted}
                         difficulty={habit.difficulty}
                         onHabitDeleteClick={this.onHabitDeleteClick}
+                        changeSingleHabit={this.changeSingleHabit}
+                        refreshHabits={this.refreshComponent}
                     />
                 </div>
             )
