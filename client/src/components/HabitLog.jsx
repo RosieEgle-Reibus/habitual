@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import SingleHabit from './SingleHabit.jsx'
 
 
 export default class HabitLog extends Component {
@@ -11,13 +12,13 @@ export default class HabitLog extends Component {
             totalTimesCompleted: ''
         }
     }
-    componentDidMount() {
-        axios.get('/api/habit')
-            .then((res) => {
-                this.setState({ habitList: res.data},
-                    )
-            })
-    }
+    // componentDidMount() {
+    //     axios.get('/api/habit')
+    //         .then((res) => {
+    //             this.setState({ habitList: res.data},
+    //                 )
+    //         })
+    // }
     refereshCompletions = () => {
         axios.get('/api/habit')
             .then((res) => {
@@ -55,38 +56,40 @@ export default class HabitLog extends Component {
     // })
 
     render() {
-        const HabitListElements = this.state.habitList.map((habit) => {
-            console.log(habit)
+        // const HabitListElements = this.state.habitList.map((habit) => {
+        //     console.log(habit)
             
-            return (
-                <div key={habit._id}>
-                    <h1>{habit.habit}</h1>
-                    <h2>Daily Goal for Completions: {habit.expectedTimesPerDay}</h2>
-                    <h2>Times Completed Today: {this.state.changeCompletions.totalTimesCompleted}</h2>
-                    <form onSubmit={(e)=> this.changeSingleHabit(e, habit._id)}>
-                        <input
-                            type="Number"
-                            placeholder="Number Completed"
-                            value={this.state.changeCompletions.totalTimesCompleted}
-                            name="totalTimesCompleted"
-                            onChange={this.onChange} />
-                            <input
-                            type="hidden"
-                            placeholder="Id"
-                            name="habitId"
-                            value={habit._id}
-                            onChange={this.onChange}
-                             />
-                        <input type="Submit" value="Add Completion"
-                             />
-                    </form>
-                </div>
-            )
-        })
+        //     return (
+        //         <div key={habit._id}>
+        //             <h1>{habit.habit}</h1>
+        //             <h2>Daily Goal for Completions: {habit.expectedTimesPerDay}</h2>
+        //             <h2>Times Completed Today: {this.state.changeCompletions.totalTimesCompleted}</h2>
+        //             <form onSubmit={(e)=> this.changeSingleHabit(e, habit._id)}>
+        //                 <input
+        //                     type="Number"
+        //                     placeholder="Number Completed"
+        //                     value={this.state.changeCompletions.totalTimesCompleted}
+        //                     name="totalTimesCompleted"
+        //                     onChange={this.onChange} />
+        //                     <input
+        //                     type="hidden"
+        //                     placeholder="Id"
+        //                     name="habitId"
+        //                     value={habit._id}
+        //                     onChange={this.onChange}
+        //                      />
+        //                 <input type="Submit" value="Add Completion"
+        //                      />
+        //             </form>
+        //         </div>
+        //     )
+        // })
+       
         return (
             <div>
+                 <SingleHabit />
                 <h1>Log from a tree</h1>
-                {HabitListElements}
+                {/* {HabitListElements} */}
             </div>
         )
     }

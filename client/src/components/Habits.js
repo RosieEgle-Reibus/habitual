@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import SingleHabit from './SingleHabit.jsx'
 
-
 export default class Habits extends Component {
 
     /* Step 3
@@ -15,9 +14,11 @@ export default class Habits extends Component {
         newHabit: {
             habit: '',
             expectedTimesPerDay: '',
-            difficulty: ''
+            difficulty: '',
         },
-        createHabit: false
+        createHabit: false,
+        totalPoints: 0,
+        totalPointsEarned: 0 
     }
     componentDidMount() {
         axios.get('/api/habit')
@@ -124,6 +125,7 @@ export default class Habits extends Component {
                         placeholder="Times Expected"
                         value={this.state.newHabit.difficulty} 
                         onChange={this.onCreateDifficulty}/>
+                        
                     <input type="Submit" value="Make a New Habit!" />
                 </form> : null }
                 {HabitListElements}

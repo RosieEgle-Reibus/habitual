@@ -9,7 +9,8 @@ export default class SingleHabit extends Component {
             habitId: '',
             habit: '',
             expectedTimesPerDay: '',
-            difficulty: ''
+            difficulty: '',
+            totalTimesCompleted: '',
         },
         editHabit: false
     }
@@ -42,6 +43,13 @@ export default class SingleHabit extends Component {
         this.setState({ changeHabit: newChangeHabit })
     }
 
+    onChangeToTimesCompleted = (event) => {
+        const newChangeHabit = { ...this.state.changeHabit }
+        const currentTimesCompleted = event.target.value
+        newChangeHabit.totalTimesCompleted = currentTimesCompleted
+        this.setState({ changeHabit: newChangeHabit })
+    }
+
     changeSingleHabit = (event) => {
         event.preventDefault()
         const { refreshHabits } = this.props
@@ -57,6 +65,23 @@ export default class SingleHabit extends Component {
         this.setState({ editHabit })
     }
 
+    percentComplete = () => {
+        let percentDecimals = (this.state.changeHabit.totalTimesCompleted /this.state.changeHabit.expectedTimesPerDay  ) * 100
+        let percent = percentDecimals.toFixed()
+        return percent
+    }
+
+    potentialPointsCalc = () => {
+       if(this.state.changeHabit.difficulty <= 5) {
+           let potentialPoints = this.state.changeHabit.difficulty * 30
+           return potentialPoints
+       } 
+       else {
+           let potentialPoints = this.state.changeHabit.difficulty * 50
+           return potentialPoints
+       }
+    }
+
 
     render() {
         const {
@@ -65,16 +90,16 @@ export default class SingleHabit extends Component {
             expectedTimesPerDay,
             difficulty,
             onHabitDeleteClick,
+            totalTimesCompleted
         } = this.props
 
         return (
             <div key={habitId}>
                 <h1>{habit}</h1>
-                <h2>Difficulty: {difficulty}</h2>
-                <h2>How Many Times You would like to {habit} per day: {expectedTimesPerDay}</h2>
                 <button onClick={() => onHabitDeleteClick(habitId)}>Delete Habit</button>
                 <button onClick={this.toggleEditForm}>Edit Habit</button>
-
+                <h1>You have currently completed {this.percentComplete()}% of your daily goal</h1>
+                <h1> {this.potentialPointsCalc()} Points!</h1>
                 <div>
                     {this.state.editHabit ?
                         <form onSubmit={this.changeSingleHabit}>
@@ -95,6 +120,19 @@ export default class SingleHabit extends Component {
                                 onChange={this.onChangeToDifficulty} />
                             <input type="Submit" value="Save Changes" />
                         </form> : null}
+                    <h2>Difficulty: {difficulty}</h2>
+                    <h2>How Many Times You would like to {habit} per day: {expectedTimesPerDay}</h2>
+                    <h2>How Many Times You Actually {habit} today: {totalTimesCompleted}</h2>
+                    <form onSubmit={this.changeSingleHabit}>
+                        <label for="totalTimesCompleted">Log how many times you completed it!</label>
+                        <input
+                            type="Number"
+                            id="totalTimesCompleted"
+                            placeholder="Actual Times Completed"
+                            value={this.state.changeHabit.totalTimesCompleted}
+                            onChange={this.onChangeToTimesCompleted} />
+                        <input type="Submit" value="Save Changes" />
+                    </form>
                 </div>
 
             </div>
