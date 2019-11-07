@@ -11,8 +11,11 @@ export default class SingleHabit extends Component {
             expectedTimesPerDay: '',
             difficulty: '',
             totalTimesCompleted: '',
+            potentialPoints: '',
+            pointsEarned: ''
         },
-        editHabit: false
+        editHabit: false,
+       
     }
 
     componentDidMount() {
@@ -78,9 +81,29 @@ export default class SingleHabit extends Component {
        } 
        else {
            let potentialPoints = this.state.changeHabit.difficulty * 50
+
+        //    this.setState({changeHabit: potentialPoints})
            return potentialPoints
        }
     }
+
+    pointsEarnedCalc = () => {
+        if(this.state.changeHabit.difficulty <= 5) {
+            let potentialPoints = this.state.changeHabit.difficulty * 30
+            let percentDecimals = (this.state.changeHabit.totalTimesCompleted /this.state.changeHabit.expectedTimesPerDay  )
+            let pointsEarned = potentialPoints * percentDecimals
+            return pointsEarned
+        } 
+        else {
+            let potentialPoints = (this.state.changeHabit.difficulty * 50)
+            let percentDecimals = (this.state.changeHabit.totalTimesCompleted /this.state.changeHabit.expectedTimesPerDay  )
+            let pointsEarnedDecimal = potentialPoints * percentDecimals
+            let pointsEarned = pointsEarnedDecimal.toFixed()
+            return pointsEarned
+        }
+     }
+
+
 
 
     render() {
@@ -90,7 +113,9 @@ export default class SingleHabit extends Component {
             expectedTimesPerDay,
             difficulty,
             onHabitDeleteClick,
-            totalTimesCompleted
+            totalTimesCompleted,
+            potentialPoints,
+            pointsEarned
         } = this.props
 
         return (
@@ -99,7 +124,8 @@ export default class SingleHabit extends Component {
                 <button onClick={() => onHabitDeleteClick(habitId)}>Delete Habit</button>
                 <button onClick={this.toggleEditForm}>Edit Habit</button>
                 <h1>You have currently completed {this.percentComplete()}% of your daily goal</h1>
-                <h1> {this.potentialPointsCalc()} Points!</h1>
+                <h3> Potential Points: {this.potentialPointsCalc()}</h3>
+                <h1> Points Earned: {this.pointsEarnedCalc()}</h1>
                 <div>
                     {this.state.editHabit ?
                         <form onSubmit={this.changeSingleHabit}>

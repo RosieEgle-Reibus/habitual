@@ -17,8 +17,9 @@ export default class Habits extends Component {
             difficulty: '',
         },
         createHabit: false,
-        totalPoints: 0,
-        totalPointsEarned: 0 
+        potentialPoints: 0,
+        pointsEarned: 0,
+
     }
     componentDidMount() {
         axios.get('/api/habit')
@@ -81,6 +82,7 @@ export default class Habits extends Component {
     render() {
     
         const HabitListElements = this.state.habitList.map((habit) => {
+
             return (
                 <div>
                     <SingleHabit
@@ -92,6 +94,8 @@ export default class Habits extends Component {
                         onHabitDeleteClick={this.onHabitDeleteClick}
                         changeSingleHabit={this.changeSingleHabit}
                         refreshHabits={this.refreshComponent}
+                        potentialPoints={this.potentialPoints}
+                        pointsEarned={this.pointsEarned}
                     />
                     </div> 
             )
