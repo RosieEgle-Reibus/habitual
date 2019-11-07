@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import SingleHabit from './SingleHabit.jsx'
 
+
 export default class Habits extends Component {
 
     /* Step 3
@@ -75,11 +76,9 @@ export default class Habits extends Component {
         this.setState({createHabit})
     }
 
-    
-
-    
 
     render() {
+    
         const HabitListElements = this.state.habitList.map((habit) => {
             return (
                 <div>
@@ -93,7 +92,7 @@ export default class Habits extends Component {
                         changeSingleHabit={this.changeSingleHabit}
                         refreshHabits={this.refreshComponent}
                     />
-                </div>
+                    </div> 
             )
         })
 

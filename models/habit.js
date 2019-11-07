@@ -6,7 +6,7 @@ const HabitSchema = new mongoose.Schema({
   expectedTimesPerDay: Number,
   totalTimesCompleted: Number,
   difficulty: Number,
-  userId: Number,
+  userId: mongoose.Types.ObjectId,
 
 })
 

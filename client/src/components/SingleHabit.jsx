@@ -63,7 +63,6 @@ export default class SingleHabit extends Component {
             habitId,
             habit,
             expectedTimesPerDay,
-            totalTimesCompleted,
             difficulty,
             onHabitDeleteClick,
         } = this.props
