@@ -4,7 +4,7 @@ const mongoose = require('./connection.js')
 const HabitSchema = new mongoose.Schema({
   habit: String,
   expectedTimesPerDay: Number,
-  totalTimesCompleted: Number,
+  totalTimesCompleted: { type:Number, default: 0},
   difficulty: Number,
   userId: mongoose.Types.ObjectId,
 
