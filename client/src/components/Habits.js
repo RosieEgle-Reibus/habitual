@@ -25,21 +25,16 @@ export default class Habits extends Component {
 
     }
     componentDidMount() {
-        axios.get('/api/habit')
-
+        this.refreshComponent()
+        }
+        
+        refreshComponent = () => {
+            axios.get('/api/habit')
             .then((res) => {
                 console.log(res.data)
                 this.setState({ habitList: res.data })
                 this.totalPotentialPointsCalc()
                 this.totalEarnedPointsCalc()
-            })
-    }
-
-    refreshComponent = () => {
-        axios.get('/api/habit')
-            .then((res) => {
-                console.log(res.data)
-                this.setState({ habitList: res.data })
             })
     }
 
@@ -136,13 +131,13 @@ totalPotentialPointsCalc = () => { this.state.habitList.map((habit) => {
         let potPoints = habit.difficulty * 30
         let totalPotPoints = previousState + potPoints
         this.setState({potentialPoints: totalPotPoints})
-        this.refreshComponent()
+        // this.refreshComponent()
         return (totalPotPoints)
     } else {
         let potPoints = habit.difficulty * 50
         let totalPotPoints = previousState + potPoints
         this.setState({potentialPoints: totalPotPoints})
-        this.refreshComponent()
+        // this.refreshComponent()
         return totalPotPoints
     }  
     })
@@ -156,7 +151,6 @@ totalEarnedPointsCalc = () => { this.state.habitList.map((habit) => {
         let pointsEarnedDecimal = potPoints * percentDecimals
         let totalPotPoints = previousState + pointsEarnedDecimal
         this.setState({pointsEarned: totalPotPoints})
-        
         return totalPotPoints
     } else {
         let potPoints = habit.difficulty * 50
@@ -164,12 +158,10 @@ totalEarnedPointsCalc = () => { this.state.habitList.map((habit) => {
         let pointsEarnedDecimal = potPoints * percentDecimals
         let totalPotPoints = previousState + pointsEarnedDecimal
         this.setState({pointsEarned: totalPotPoints})
-       
         return totalPotPoints
     }  
-    
     })
-    this.refreshComponent()
+    // this.refreshComponent()
 }
 
 
