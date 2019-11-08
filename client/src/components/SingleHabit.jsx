@@ -81,8 +81,6 @@ export default class SingleHabit extends Component {
        } 
        else {
            let potentialPoints = this.state.changeHabit.difficulty * 50
-
-        //    this.setState({changeHabit: potentialPoints})
            return potentialPoints
        }
     }
@@ -123,7 +121,7 @@ export default class SingleHabit extends Component {
                 <h1>{habit}</h1>
                 <button onClick={() => onHabitDeleteClick(habitId)}>Delete Habit</button>
                 <button onClick={this.toggleEditForm}>Edit Habit</button>
-                <h1>You have currently completed {this.percentComplete()}% of your daily goal</h1>
+                {/* <h1>You have currently completed {this.percentComplete()}% of your daily goal</h1> */}
                 <h3> Potential Points: {this.potentialPointsCalc()}</h3>
                 <h1> Points Earned: {this.pointsEarnedCalc()}</h1>
                 <div>
