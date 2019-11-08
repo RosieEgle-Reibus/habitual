@@ -122,8 +122,8 @@ export default class SingleHabit extends Component {
                 <button onClick={() => onHabitDeleteClick(habitId)}>Delete Habit</button>
                 <button onClick={this.toggleEditForm}>Edit Habit</button>
                 {/* <h1>You have currently completed {this.percentComplete()}% of your daily goal</h1> */}
-                <h3> Potential Points: {this.potentialPointsCalc()}</h3>
-                <h1> Points Earned: {this.pointsEarnedCalc()}</h1>
+                {/* <h3> Potential Points: {this.potentialPointsCalc()}</h3>
+                <h1> Points Earned: {this.pointsEarnedCalc()}</h1> */}
                 <div>
                     {this.state.editHabit ?
                         <form onSubmit={this.changeSingleHabit}>

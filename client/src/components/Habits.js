@@ -15,10 +15,13 @@ export default class Habits extends Component {
             habit: '',
             expectedTimesPerDay: '',
             difficulty: '',
+            totalTimesCompleted: '',
+            potentialPoints: '',
+            pointsEarned: ''
         },
         createHabit: false,
-        potentialPoints: 0,
-        pointsEarned: 0,
+        allPotentialPoints: 0,
+        allPointsEarned: 0,
 
     }
     componentDidMount() {
@@ -40,49 +43,65 @@ export default class Habits extends Component {
     createNewHabit = (event) => {
         event.preventDefault()
         axios.post('/api/habit', this.state.newHabit)
-        .then(() => {
-            this.refreshComponent()
-        })
+            .then(() => {
+                this.refreshComponent()
+            })
     }
 
     onCreateHabit = (event) => {
-        const previousState = {...this.state}
+        const previousState = { ...this.state }
         const newHabitHabit = event.target.value
         previousState.newHabit.habit = newHabitHabit
-        this.setState({previousState})
+        this.setState({ previousState })
     }
 
     onCreateTimesExpected = (event) => {
-        const previousState = {...this.state}
+        const previousState = { ...this.state }
         const newHabitTimesExpected = event.target.value
         previousState.newHabit.expectedTimesPerDay = newHabitTimesExpected
-        this.setState({previousState})
+        this.setState({ previousState })
     }
 
     onCreateDifficulty = (event) => {
-        const previousState = {...this.state}
+        const previousState = { ...this.state }
         const newHabitDifficulty = event.target.value
         previousState.newHabit.difficulty = newHabitDifficulty
-        this.setState({previousState})
+        this.setState({ previousState })
     }
 
     onHabitDeleteClick = (habitId) => {
         axios.delete(`/api/habit/${habitId}`)
-        .then(() => {
-            this.refreshComponent()
-        })
+            .then(() => {
+                this.refreshComponent()
+            })
     }
 
     toggleCreateForm = () => {
         const createHabit = !this.state.createHabit
-        this.setState({createHabit})
+        this.setState({ createHabit })
     }
+
+    percentComplete = (totalTimesCompleted, expectedTimesPerDay) => {
+       
+        console.log(totalTimesCompleted)
+        let percentDecimals = (totalTimesCompleted / expectedTimesPerDay) * 100
+        let percent = percentDecimals.toFixed()
+        return percent
+    }
+
+    // percentComplete = () => {
+    //     let percentDecimals = (habit.pointsEarned / habit.potentialPoints) * 100
+    //     let percent = percentDecimals.toFixed()
+    //     return percent
+    // }
+
+
 
 
     render() {
-    
-        const HabitListElements = this.state.habitList.map((habit) => {
 
+        const HabitListElements = this.state.habitList.map((habit) => {
+     
             return (
                 <div>
                     <SingleHabit
@@ -94,10 +113,12 @@ export default class Habits extends Component {
                         onHabitDeleteClick={this.onHabitDeleteClick}
                         changeSingleHabit={this.changeSingleHabit}
                         refreshHabits={this.refreshComponent}
-                        potentialPoints={this.potentialPoints}
+                        potentialPoints={this.potentialPoints} 
                         pointsEarned={this.pointsEarned}
                     />
-                    </div> 
+                    <h1>Percent: {this.percentComplete(habit.totalTimesCompleted, habit.expectedTimesPerDay)}</h1>
+                </div>
+
             )
         })
 
@@ -105,34 +126,35 @@ export default class Habits extends Component {
             <div>
                 <h1>Daily Habits You want to Work On</h1>
                 <button onClick={this.toggleCreateForm}>Add New Habit</button>
-                {this.state.createHabit ? 
-                <form onSubmit={this.createNewHabit}>
-                    <label for="habit">Add a Habit</label>
-                    <input
-                        type="string"
-                        placeholder="New Habit"
-                        id="habit"
-                        name="newHabit.name"
-                        value={this.state.newHabit.habit}
-                        onChange={this.onCreateHabit} />
-                    <label for="Texpected">How many times a day do you think you can realistically complete the habit?</label>
-                    <input
-                        type="number"
-                        id="Texpected"
-                        placeholder="Times Expected"
-                        value={this.state.newHabit.expectedTimesPerDay}
-                        onChange={this.onCreateTimesExpected} />
-                    <label for="difficulty">How hard is it to make yourself do it?</label>
-                    <input
-                        type="number"
-                        id="difficulty"
-                        placeholder="Times Expected"
-                        value={this.state.newHabit.difficulty} 
-                        onChange={this.onCreateDifficulty}/>
-                        
-                    <input type="Submit" value="Make a New Habit!" />
-                </form> : null }
+                {this.state.createHabit ?
+                    <form onSubmit={this.createNewHabit}>
+                        <label for="habit">Add a Habit</label>
+                        <input
+                            type="string"
+                            placeholder="New Habit"
+                            id="habit"
+                            name="newHabit.name"
+                            value={this.state.newHabit.habit}
+                            onChange={this.onCreateHabit} />
+                        <label for="Texpected">How many times a day do you think you can realistically complete the habit?</label>
+                        <input
+                            type="number"
+                            id="Texpected"
+                            placeholder="Times Expected"
+                            value={this.state.newHabit.expectedTimesPerDay}
+                            onChange={this.onCreateTimesExpected} />
+                        <label for="difficulty">How hard is it to make yourself do it?</label>
+                        <input
+                            type="number"
+                            id="difficulty"
+                            placeholder="Times Expected"
+                            value={this.state.newHabit.difficulty}
+                            onChange={this.onCreateDifficulty} />
+
+                        <input type="Submit" value="Make a New Habit!" />
+                    </form> : null}
                 {HabitListElements}
+
             </div>
         )
     }
