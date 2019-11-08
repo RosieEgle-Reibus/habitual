@@ -20,9 +20,8 @@ export default class Habits extends Component {
             pointsEarned: ''
         },
         createHabit: false,
-        allPotentialPoints: 0,
-        allPointsEarned: 0,
-        potentialPoints: 0
+        potentialPoints: 0,
+        pointsEarned: 0
 
     }
     componentDidMount() {
@@ -31,7 +30,8 @@ export default class Habits extends Component {
             .then((res) => {
                 console.log(res.data)
                 this.setState({ habitList: res.data })
-                this.testFunc()
+                this.totalPotentialPointsCalc()
+                this.totalEarnedPointsCalc()
             })
     }
 
@@ -115,25 +115,64 @@ export default class Habits extends Component {
             let pointsEarned = pointsEarnedDecimal.toFixed()
             return pointsEarned
         }
-
     }
 
-    // addPotentialPoints = (difficulty) => {
-    //     let totalPotentialPoints += this.potentialPointsCalc(difficulty)
-    //     this.setState({allPotentialPoints : totalPotentialPoints})
-    // }
 
-testFunc = () => { this.state.habitList.map((habit) => {
+// testFunc = () => { this.state.habitList.map((habit) => {
+//     const previousState = this.state.potentialPoints
+//     let test= habit.expectedTimesPerDay + habit.totalTimesCompleted
+//     let addition = previousState + test
+//     this.setState({potentialPoints: addition})
+//     console.log(test)
+//     console.log(addition)
+//     console.log(previousState) 
+//     return addition    
+//     })
+// }
+
+totalPotentialPointsCalc = () => { this.state.habitList.map((habit) => {
     const previousState = this.state.potentialPoints
-    let test= habit.expectedTimesPerDay + habit.totalTimesCompleted
-    let addition = previousState + test
-    this.setState({potentialPoints: addition})
-    console.log(test)
-    console.log(addition)
-    console.log(previousState)
-        
+    if (habit.difficulty <= 5) {
+        let potPoints = habit.difficulty * 30
+        let totalPotPoints = previousState + potPoints
+        this.setState({potentialPoints: totalPotPoints})
+        this.refreshComponent()
+        return (totalPotPoints)
+    } else {
+        let potPoints = habit.difficulty * 50
+        let totalPotPoints = previousState + potPoints
+        this.setState({potentialPoints: totalPotPoints})
+        this.refreshComponent()
+        return totalPotPoints
+    }  
     })
 }
+
+totalEarnedPointsCalc = () => { this.state.habitList.map((habit) => {
+    const previousState = this.state.pointsEarned
+    if (habit.difficulty <= 5) {
+        let potPoints = habit.difficulty * 30
+        let percentDecimals = (habit.totalTimesCompleted / habit.expectedTimesPerDay)
+        let pointsEarnedDecimal = potPoints * percentDecimals
+        let totalPotPoints = previousState + pointsEarnedDecimal
+        this.setState({pointsEarned: totalPotPoints})
+        
+        return totalPotPoints
+    } else {
+        let potPoints = habit.difficulty * 50
+        let percentDecimals = (habit.totalTimesCompleted / habit.expectedTimesPerDay)
+        let pointsEarnedDecimal = potPoints * percentDecimals
+        let totalPotPoints = previousState + pointsEarnedDecimal
+        this.setState({pointsEarned: totalPotPoints})
+       
+        return totalPotPoints
+    }  
+    
+    })
+    this.refreshComponent()
+}
+
+
 
     render() {
         
@@ -158,9 +197,7 @@ testFunc = () => { this.state.habitList.map((habit) => {
                         potentialPointsCalc={this.potentialPointsCalc}
                         pointsEarnedCalc={this.pointsEarnedCalc}
                     />
-                    <h1>Percent: {this.percentComplete(habit.totalTimesCompleted, habit.expectedTimesPerDay)}</h1>
-                    
-                    
+                    <h1>Percent: {this.percentComplete(habit.totalTimesCompleted, habit.expectedTimesPerDay)}</h1> 
                 </div>
 
             )
@@ -169,6 +206,8 @@ testFunc = () => { this.state.habitList.map((habit) => {
         return (
             <div>
                 <h1>Daily Habits You want to Work On</h1>
+                <h1>Potential Points: {this.state.potentialPoints}</h1>
+                <h1>Points Earned: {this.state.pointsEarned}</h1>
                 <button onClick={this.toggleCreateForm}>Add New Habit</button>
                 {this.state.createHabit ?
                     <form onSubmit={this.createNewHabit}>

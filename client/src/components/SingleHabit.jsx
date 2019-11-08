@@ -68,12 +68,6 @@ export default class SingleHabit extends Component {
         this.setState({ editHabit })
     }
 
-    // changePotentialPoints = () => {
-    //     const previousState = { ...this.state.changeHabit } 
-    //    const potentialPoints =  this.props.potentialPointsCalc(this.state.changeHabit.difficulty)
-    //    previousState.potentialPoints = potentialPoints
-    //    this.setState({changeHabit: previousState})
-    // }
 
 
 
