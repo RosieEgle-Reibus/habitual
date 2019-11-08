@@ -22,13 +22,16 @@ export default class Habits extends Component {
         createHabit: false,
         allPotentialPoints: 0,
         allPointsEarned: 0,
+        potentialPoints: 0
 
     }
     componentDidMount() {
         axios.get('/api/habit')
+
             .then((res) => {
                 console.log(res.data)
                 this.setState({ habitList: res.data })
+                this.testFunc()
             })
     }
 
@@ -82,27 +85,64 @@ export default class Habits extends Component {
     }
 
     percentComplete = (totalTimesCompleted, expectedTimesPerDay) => {
-       
-        console.log(totalTimesCompleted)
+
         let percentDecimals = (totalTimesCompleted / expectedTimesPerDay) * 100
         let percent = percentDecimals.toFixed()
         return percent
     }
 
-    // percentComplete = () => {
-    //     let percentDecimals = (habit.pointsEarned / habit.potentialPoints) * 100
-    //     let percent = percentDecimals.toFixed()
-    //     return percent
+    potentialPointsCalc = (difficulty) => {
+        if (difficulty <= 5) {
+            let potentialPoints = difficulty * 30
+            return potentialPoints
+        } else {
+            let potentialPoints = difficulty * 50
+            return potentialPoints
+        }
+    }
+
+    pointsEarnedCalc = (difficulty, totalTimesCompleted, expectedTimesPerDay) => {
+        if (difficulty <= 5) {
+            let potentialPoints = difficulty * 30
+            let percentDecimals = (totalTimesCompleted / expectedTimesPerDay)
+            let pointsEarnedDecimal = potentialPoints * percentDecimals
+            let pointsEarned = pointsEarnedDecimal.toFixed()
+            return pointsEarned
+        } else {
+            let potentialPoints = difficulty * 50
+            let percentDecimals = (totalTimesCompleted / expectedTimesPerDay)
+            let pointsEarnedDecimal = potentialPoints * percentDecimals
+            let pointsEarned = pointsEarnedDecimal.toFixed()
+            return pointsEarned
+        }
+
+    }
+
+    // addPotentialPoints = (difficulty) => {
+    //     let totalPotentialPoints += this.potentialPointsCalc(difficulty)
+    //     this.setState({allPotentialPoints : totalPotentialPoints})
     // }
 
-
-
+testFunc = () => { this.state.habitList.map((habit) => {
+    const previousState = this.state.potentialPoints
+    let test= habit.expectedTimesPerDay + habit.totalTimesCompleted
+    let addition = previousState + test
+    this.setState({potentialPoints: addition})
+    console.log(test)
+    console.log(addition)
+    console.log(previousState)
+        
+    })
+}
 
     render() {
-
+        
         const HabitListElements = this.state.habitList.map((habit) => {
-     
+           
+           
+        
             return (
+                
                 <div>
                     <SingleHabit
                         habitId={habit._id}
@@ -113,10 +153,14 @@ export default class Habits extends Component {
                         onHabitDeleteClick={this.onHabitDeleteClick}
                         changeSingleHabit={this.changeSingleHabit}
                         refreshHabits={this.refreshComponent}
-                        potentialPoints={this.potentialPoints} 
+                        potentialPoints={this.potentialPoints}
                         pointsEarned={this.pointsEarned}
+                        potentialPointsCalc={this.potentialPointsCalc}
+                        pointsEarnedCalc={this.pointsEarnedCalc}
                     />
                     <h1>Percent: {this.percentComplete(habit.totalTimesCompleted, habit.expectedTimesPerDay)}</h1>
+                    
+                    
                 </div>
 
             )
