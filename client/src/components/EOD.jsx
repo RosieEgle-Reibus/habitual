@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 
 export default class EOD extends Component {
     render() {
-        console.log('pointsEarned', this.props.match.params.pointsEarned)
-        console.log('potentialPoints', this.props.match.params.potentialPoints)
+       const {
+           potentialPoints,
+           pointsEarned
+       } = this.props
         return (
             <div>
-                HI
+               Hi EOD 
+              Potential Points: {potentialPoints}
+              Points Earned: {pointsEarned}
             </div>
         )
     }

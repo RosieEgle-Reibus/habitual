@@ -1,8 +1,8 @@
 const navData = [
     {name: "Habit"},
     {name: "Reward"},
-    {name: "Log"},
-    {name: "Stats"}
+    {name: "EOD"}
+    
 ]
 
 export default navData

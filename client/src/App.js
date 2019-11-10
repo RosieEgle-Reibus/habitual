@@ -9,6 +9,7 @@ import NavBar from './components/NavBar.jsx'
 import EOD from './components/EOD'
 import {getAllHabits} from './api/main.js'
 import HabitChild from './components/HabitChild.jsx'
+import HabitLog from './components/HabitLog';
 
   // // testFunc = () => { this.state.habitList.map((habit) => {
   // //     const previousState = this.state.potentialPoints
@@ -40,15 +41,17 @@ export default class App extends Component {
   }
  
 componentDidMount() {
+  getAllHabits()
   this.refreshComponent()
+  //  this.testFunc()
 }
 
   refreshComponent = () => {
-    getAllHabits()
-      .then((allHabits) => {
-        console.log(allHabits)
+    axios.get('/api/habit')
+      .then((res) => {
+        // console.log(allHabits)
         console.log('Habit List', this.state.habitList)
-        this.setState({ habitList: allHabits })
+        this.setState({ habitList: res.data})
         // this.totalPotentialPointsCalc()
         // this.totalEarnedPointsCalc()
         // console.log('Potential Points', this.state.potentialPoints)
@@ -108,13 +111,11 @@ componentDidMount() {
         let potPoints = habit.difficulty * 30
         let totalPotPoints = previousState + potPoints
         this.setState({ potentialPoints: totalPotPoints })
-       
         return (totalPotPoints)
       } else {
         let potPoints = habit.difficulty * 50
         let totalPotPoints = previousState + potPoints
-        this.setState({ potentialPoints: totalPotPoints })
-        
+        this.setState({ potentialPoints: totalPotPoints }) 
         return totalPotPoints
       }
     })
@@ -162,6 +163,8 @@ componentDidMount() {
   render() {
     return (
       <div className="App">
+        <h2>Total Points Earned {this.state.pointsEarned}</h2>
+                <h2>Total Potential Points {this.state.potentialPoints}</h2>
       <h1> App Hi</h1>
       <Router>
         <nav>
@@ -169,6 +172,11 @@ componentDidMount() {
         </nav>
         <Switch>
         <Route exact path="/reward" component={Reward} />
+        {/* <Route exact path="/eod" component={EOD} /> */}
+         <Route exact path="/eod" 
+        render={(props) =>  <EOD {...props} potentialPoints={this.state.potentialPoints}
+        pointsEarned={this.state.pointsEarned} />}
+        />
         <Route exact path="/habitchild" component={HabitChild} />
         <HabitChild 
         habitList={this.state.habitList}
@@ -189,6 +197,8 @@ componentDidMount() {
         totalPotentialPointsCalc={this.totalPotentialPointsCalc}
         totalEarnedPointsCalc={this.state.totalEarnedPointsCalc}
         />
+      
+       
         
         </Switch>
       </Router>

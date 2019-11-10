@@ -13,16 +13,23 @@ export default class HabitChild extends Component {
             totalTimesCompleted: '',
             potentialPoints: '',
             pointsEarned: ''
-        },
+        }
     }
 
     componentDidMount() {
         getAllHabits()
         
-        const { habitList } = this.props
-        
+        .then(() => {
+            const { habitList } = this.props
         console.log(habitList)
+            const { refreshComponent } = this.props 
+            refreshComponent()
+        })
+        
     }
+
+
+
 
     createNewHabit = (event) => {
         event.preventDefault()
@@ -57,6 +64,7 @@ export default class HabitChild extends Component {
     render() {
         const {
             habitList,
+            newHabit,
             potentialPoints,
             pointsEarned,
             refreshComponent,
