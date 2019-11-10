@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import SingleHabit from './SingleHabit.jsx'
+// import SingleHabit from './SingleHabit.jsx'
 
 
 export default class HabitLog extends Component {
@@ -87,7 +87,7 @@ export default class HabitLog extends Component {
        
         return (
             <div>
-                 <SingleHabit />
+                
                 <h1>Log from a tree</h1>
                 {/* {HabitListElements} */}
             </div>
