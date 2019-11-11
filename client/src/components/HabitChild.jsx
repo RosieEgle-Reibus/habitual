@@ -13,7 +13,9 @@ export default class HabitChild extends Component {
             totalTimesCompleted: '',
             potentialPoints: '',
             pointsEarned: ''
-        }
+        },
+        createHabit: false,
+
     }
 
     componentDidMount() {
@@ -61,6 +63,11 @@ export default class HabitChild extends Component {
         previousState.newHabit.difficulty = newHabitDifficulty
         this.setState({ previousState })
     }
+    toggleCreateForm = () => {
+        const createHabit = !this.state.createHabit
+        this.setState({ createHabit })
+      }
+
     render() {
         const {
             habitList,
@@ -69,7 +76,6 @@ export default class HabitChild extends Component {
             pointsEarned,
             refreshComponent,
             onHabitDeleteClick,
-            toggleCreateForm,
             percentComplete,
             potentialPointsCalc,
             pointsEarnedCalc,
@@ -104,11 +110,12 @@ export default class HabitChild extends Component {
 
 
         return (
-            <div>
+            <div >
                 <h1>Habit Child Hi</h1>
                 <h2>Total Points Earned {pointsEarned}</h2>
                 <h2>Total Potential Points {potentialPoints}</h2>
-
+                <button onClick={this.toggleCreateForm}>Add New Reward</button>
+                {this.state.createHabit ? 
                 <form onSubmit={this.createNewHabit}>
                     <label for="habit">Add a Habit</label>
                     <input
@@ -133,8 +140,10 @@ export default class HabitChild extends Component {
                         value={this.state.newHabit.difficulty}
                         onChange={this.onCreateDifficulty} />
                     <input type="Submit" value="Make a New Habit!" />
-                </form>
+                </form> : null }
+                <div className="habit-container">
                 {HabitListElements}
+                </div>
             </div>
         )
     }

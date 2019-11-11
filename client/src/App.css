@@ -1,33 +1,53 @@
 .App {
   text-align: center;
+  margin: 0 auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.habit-container {
+  text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.reward-master-container {
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+.reward-container {
+  text-align: left;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+  flex-direction: row;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.item {
+  /* position: relative; */
+  display: flex;
+  width: 100%;
+  padding: 12px 30px 12px 20px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+  margin: 12px 0;
+}
+
+.material-icons.md-48 { font-size: 48px; }
+
+.material-icons.delete {
+  color: #78909C;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 8px;
+}
+
+.material-icons.edit {
+  color: rgba(120, 144, 156, 0.575);
+  cursor: pointer;
+  
+  padding-left: 30px;
+  font-size: 20px;
 }

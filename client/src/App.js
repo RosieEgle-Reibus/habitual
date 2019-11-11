@@ -6,7 +6,7 @@ import './App.css'
 import Reward from './components/Reward'
 import NavBar from './components/NavBar.jsx'
 import EOD from './components/EOD'
-import {getAllHabits} from './api/main.js'
+import { getAllHabits } from './api/main.js'
 import HabitChild from './components/HabitChild.jsx'
 
 
@@ -21,25 +21,24 @@ export default class App extends Component {
       potentialPoints: '',
       pointsEarned: ''
     },
-    createHabit: false,
     potentialPoints: 0,
     pointsEarned: 0
   }
- 
-componentDidMount() {
-  getAllHabits()
-  this.refreshComponent()
-  //  this.testFunc()
-}
+
+  componentDidMount() {
+    //getAllHabits()
+    this.refreshComponent()
+    //  this.testFunc()
+  }
 
   refreshComponent = () => {
     axios.get('/api/habit')
       .then((res) => {
         // console.log(allHabits)
         console.log('Habit List', this.state.habitList)
-        this.setState({ habitList: res.data})
+        this.setState({ habitList: res.data })
         this.totalPotentialPointsCalc()
-         this.totalEarnedPointsCalc()
+        this.totalEarnedPointsCalc()
         // console.log('Potential Points', this.state.potentialPoints)
         // console.log('Points Earned', this.state.pointsEarned)
         // this.testFunc()
@@ -53,10 +52,6 @@ componentDidMount() {
       })
   }
 
-  toggleCreateForm = () => {
-    const createHabit = !this.state.createHabit
-    this.setState({ createHabit })
-  }
 
   percentComplete = (totalTimesCompleted, expectedTimesPerDay) => {
     let percentDecimals = (totalTimesCompleted / expectedTimesPerDay) * 100
@@ -101,13 +96,13 @@ componentDidMount() {
       } else {
         let potPoints = habit.difficulty * 50
         let totalPotPoints = previousState + potPoints
-        this.setState({ potentialPoints: totalPotPoints }) 
+        this.setState({ potentialPoints: totalPotPoints })
         return totalPotPoints
       }
     })
   }
 
-    totalEarnedPointsCalc = () => {
+  totalEarnedPointsCalc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.pointsEarned
       if (habit.difficulty <= 5) {
@@ -130,65 +125,71 @@ componentDidMount() {
     })
   }
 
-    testFunc = () => { this.state.habitList.map((habit) => {
-        const previousState = this.state.potentialPoints
-        let test= habit.expectedTimesPerDay + habit.totalTimesCompleted
-        let addition = previousState + test
-        this.setState({potentialPoints: addition})
-        console.log('expected', habit.expectedTimesPerDay)
-        console.log('completed', habit.totalTimesCompleted)
-        console.log('test', test)
-        console.log('addition', addition)
-        console.log('previousState', previousState)
-        console.log(this.state.potentialPoints) 
-        return addition    
-        })
-    }
+  testFunc = () => {
+    this.state.habitList.map((habit) => {
+      const previousState = this.state.potentialPoints
+      let test = habit.expectedTimesPerDay + habit.totalTimesCompleted
+      let addition = previousState + test
+      this.setState({ potentialPoints: addition })
+      console.log('expected', habit.expectedTimesPerDay)
+      console.log('completed', habit.totalTimesCompleted)
+      console.log('test', test)
+      console.log('addition', addition)
+      console.log('previousState', previousState)
+      console.log(this.state.potentialPoints)
+      return addition
+    })
+  }
 
 
   render() {
     return (
       <div className="App">
+        <div>
         {/* <h2>Total Points Earned {this.state.pointsEarned}</h2>
                 <h2>Total Potential Points {this.state.potentialPoints}</h2> */}
-      <h1> App Hi</h1>
-      <Router>
-        <nav>
-          <NavBar />
-        </nav>
-        <Switch>
-        <Route exact path="/reward" render={(props) =>  <Reward {...props} potentialPoints={this.state.potentialPoints}
-        pointsEarned={this.state.pointsEarned} /> } />
+        <h1> App Hi</h1>
+        <i className="material-icons md-48">face</i>
+        <i className="material-icons md-48">ring_volume</i>
+        <Router>
+          <nav>
+            <NavBar />
+          </nav>
+          <Switch>
+            <Route exact path="/reward" render={(props) => <Reward {...props} potentialPoints={this.state.potentialPoints}
+              pointsEarned={this.state.pointsEarned} />} />
 
-        <Route exact path="/eod" 
-        render={(props) =>  <EOD {...props} potentialPoints={this.state.potentialPoints}
-        pointsEarned={this.state.pointsEarned} />}
-        />
-        <Route exact path="/habitchild" component={HabitChild} />
-        <HabitChild 
-        habitList={this.state.habitList}
-        newHabit={this.state.newHabit}
-        createHabit={this.state.createHabit}
-        potentialPoints={this.state.potentialPoints}
-        pointsEarned={this.state.pointsEarned}
-        refreshComponent={this.refreshComponent}
-        createNewHabit={this.createNewHabit}
-        onCreateHabit={this.onCreateHabit}
-        onCreateTimesExpected={this.onCreateTimesExpected}
-        onCreateDifficulty={this.onCreateDifficulty}
-        onHabitDeleteClick={this.onHabitDeleteClick}
-        toggleCreateForm={this.toggleCreateForm}
-        percentComplete={this.percentComplete}
-        potentialPointsCalc={this.potentialPointsCalc}
-        pointsEarnedCalc={this.pointsEarnedCalc}
-        totalPotentialPointsCalc={this.totalPotentialPointsCalc}
-        totalEarnedPointsCalc={this.state.totalEarnedPointsCalc}
-        />
-      
-       
-        
-        </Switch>
-      </Router>
+            {/* <Route exact path="/eod"
+              render={(props) => <EOD {...props} potentialPoints={this.state.potentialPoints}
+                pointsEarned={this.state.pointsEarned} />}
+            /> */}
+            <Route exact path="/EOD" component={EOD}/>
+            <Route exact path="/habitchild" component={HabitChild} />
+            <HabitChild
+              habitList={this.state.habitList}
+              newHabit={this.state.newHabit}
+              createHabit={this.state.createHabit}
+              potentialPoints={this.state.potentialPoints}
+              pointsEarned={this.state.pointsEarned}
+              refreshComponent={this.refreshComponent}
+              createNewHabit={this.createNewHabit}
+              onCreateHabit={this.onCreateHabit}
+              onCreateTimesExpected={this.onCreateTimesExpected}
+              onCreateDifficulty={this.onCreateDifficulty}
+              onHabitDeleteClick={this.onHabitDeleteClick}
+              toggleCreateForm={this.toggleCreateForm}
+              percentComplete={this.percentComplete}
+              potentialPointsCalc={this.potentialPointsCalc}
+              pointsEarnedCalc={this.pointsEarnedCalc}
+              totalPotentialPointsCalc={this.totalPotentialPointsCalc}
+              totalEarnedPointsCalc={this.state.totalEarnedPointsCalc}
+            />
+
+
+
+          </Switch>
+        </Router>
+      </div>
       </div>
     )
   }

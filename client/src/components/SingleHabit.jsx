@@ -86,14 +86,13 @@ export default class SingleHabit extends Component {
         } = this.props
 
         return (
-            <div key={habitId}>
-                <h1>{habit}</h1>
-                <h1>Potential Points: {potentialPointsCalc(difficulty)}</h1>
-                    <h1>Points Earned: {pointsEarnedCalc(difficulty, totalTimesCompleted, expectedTimesPerDay)}</h1>
-                <button onClick={() => onHabitDeleteClick(habitId)}>Delete Habit</button>
-                <button onClick={this.toggleEditForm}>Edit Habit</button>
-                <div>
-                    {this.state.editHabit ?
+            <div key={habitId} className="item">
+                <h1>{habit}  <i className="material-icons  edit"
+                onClick={() => this.toggleEditForm()}>
+                edit
+            </i></h1>
+            <h2>Difficulty: {difficulty}</h2>
+            {this.state.editHabit ?
                         <form onSubmit={this.changeSingleHabit}>
                             <input
                                 type="String"
@@ -112,10 +111,14 @@ export default class SingleHabit extends Component {
                                 onChange={this.onChangeToDifficulty} />
                             <input type="Submit" value="Save Changes" />
                         </form> : null}
-                    <h2>Difficulty: {difficulty}</h2>
-                    <h2>How Many Times You would like to {habit} per day: {expectedTimesPerDay}</h2>
-                    <h2>How Many Times You Actually {habit} today: {totalTimesCompleted}</h2>
-                    <form onSubmit={this.changeSingleHabit}>
+
+            <div>
+           
+                <h1> {pointsEarnedCalc(difficulty, totalTimesCompleted, expectedTimesPerDay)}/{potentialPointsCalc(difficulty)}</h1>
+                <h1>Points</h1>
+            </div>
+
+            <form onSubmit={this.changeSingleHabit}>
                         <label for="totalTimesCompleted">Log how many times you completed it!</label>
                         <input
                             type="Number"
@@ -125,6 +128,17 @@ export default class SingleHabit extends Component {
                             onChange={this.onChangeToTimesCompleted} />
                         <input type="Submit" value="Save Changes" />
                     </form>
+              
+                <i className="material-icons delete"
+                onClick={() => onHabitDeleteClick(habitId)}>
+                clear
+            </i>
+                
+                <div>
+                    <h2>How Many Times You would like to {habit} per day: {expectedTimesPerDay}</h2>
+                    <h2>How Many Times You Actually {habit} today: {totalTimesCompleted}</h2>
+                   
+                    
                 </div>
 
             </div>
