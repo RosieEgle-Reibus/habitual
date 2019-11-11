@@ -24,7 +24,6 @@ export default class App extends Component {
     createHabit: false,
     potentialPoints: 0,
     pointsEarned: 0
-
   }
  
 componentDidMount() {
