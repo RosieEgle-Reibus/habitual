@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import SingleReward from './SingleReward.jsx'
+import EOD from './EOD.jsx'
 
 export default class Reward extends Component {
     state = {
@@ -70,53 +71,59 @@ export default class Reward extends Component {
         return percent 
     }
 
-    // randomRewardSmall = () => {
-    //     if (this.pointPercent() <= 50) { 
-    //             if (this.state.rewardList.level === "Small") {
-    //                 let smallRandomReward = this.state.rewardList[Math.floor(Math.random()*this.state.rewardList.length)]
-    //                 console.log(smallRandomReward)
-    //                 return smallRandomReward
-    //             }
-    //     }
-    // }
-
+   
     randomReward = () => {
+        if (this.pointPercent() <= 50) {
        let rand = Math.random()
        let totalRewards = this.state.smallReward.length
        let randIndex = Math.floor(rand * totalRewards)
        let randomReward = this.state.smallReward[randIndex]
         return randomReward
+    } if (this.pointPercent() <= 75) {
+        let rand = Math.random()
+       let totalRewards = this.state.mediumReward.length
+       let randIndex = Math.floor(rand * totalRewards)
+       let randomReward = this.state.mediumReward[randIndex]
+        return randomReward
+    } else {
+        let rand = Math.random()
+       let totalRewards = this.state.bigReward.length
+       let randIndex = Math.floor(rand * totalRewards)
+       let randomReward = this.state.bigReward[randIndex]
+        return randomReward
+    }
     }
 
-    // rewardStoreName = () => {
-    //     this.state.rewardList.map((reward) => {
-    //         // if(reward.level === "Small") {
-    //         // const previousState = this.state.smallReward
-    //         // let rewardName = reward.reward
-    //         // this.setState({smallReward: rewardName})
-    //         // console.log(this.state.smallReward)
-    //         // }
-    //         // else {
-    //         //     return "Error"
-    //         // }
-    //         // this.setState(state => {
-    //         //   const smallReward = [...state.smallReward, reward.reward] 
-    //         //   return smallReward 
-    //         // })
-    //     })
-    // }
-
-     rewardStoreName = () => {
+ 
+    rewardStoreName = () => {
         this.state.rewardList.map((reward) => {
           let newReward = reward.reward
+          if (reward.level === "Small") {
           this.setState({
               smallReward: [
                   ...this.state.smallReward,
                   newReward
               ]
           })
-         console.log(this.state.smallReward)
+         console.log("Small Rewards", this.state.smallReward)
           return this.state.smallReward
+        } if (reward.level === "Medium") {
+            this.setState({
+                mediumReward: [
+                    ...this.state.mediumReward,
+                    newReward
+                ]
+            })
+            console.log("Medium Rewards", this.state.mediumReward)
+        }   else {
+            this.setState({
+                bigReward: [
+                    ...this.state.bigReward,
+                    newReward
+                ]
+            })
+            console.log("Big Rewards", this.state.bigReward)
+        }
         })
     }
 
@@ -172,6 +179,10 @@ export default class Reward extends Component {
                 {RewardListElements}
 
                 <h1>Random Reward: {this.randomReward()}</h1>
+                <EOD 
+                smallReward={this.state.smallReward}
+                potentialPoints={this.props.potentialPoints}
+                pointsEarned={this.props.pointsEarned} />
             </div>
         )
     }
