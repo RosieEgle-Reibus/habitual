@@ -54,7 +54,7 @@ export default class SingleReward extends Component {
             onRewardDeleteClick,
         } = this.props
         return (
-            <div key={rewardId} className="item">
+            <div key={rewardId} className="reward">
                 <h1>{reward} <i className="material-icons  edit"
                 onClick={() => this.toggleEditForm()}>
                 edit

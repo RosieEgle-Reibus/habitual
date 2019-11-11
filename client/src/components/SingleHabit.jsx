@@ -87,6 +87,7 @@ export default class SingleHabit extends Component {
 
         return (
             <div key={habitId} className="item">
+                <div>
                 <h1>{habit}  <i className="material-icons  edit"
                 onClick={() => this.toggleEditForm()}>
                 edit
@@ -112,13 +113,7 @@ export default class SingleHabit extends Component {
                             <input type="Submit" value="Save Changes" />
                         </form> : null}
 
-            <div>
-           
-                <h1> {pointsEarnedCalc(difficulty, totalTimesCompleted, expectedTimesPerDay)}/{potentialPointsCalc(difficulty)}</h1>
-                <h1>Points</h1>
-            </div>
-
-            <form onSubmit={this.changeSingleHabit}>
+                        <form onSubmit={this.changeSingleHabit}>
                         <label for="totalTimesCompleted">Log how many times you completed it!</label>
                         <input
                             type="Number"
@@ -129,18 +124,18 @@ export default class SingleHabit extends Component {
                         <input type="Submit" value="Save Changes" />
                     </form>
               
-                <i className="material-icons delete"
+              
+            </div>
+            <div>
+           
+                <h1> {pointsEarnedCalc(difficulty, totalTimesCompleted, expectedTimesPerDay)}/{potentialPointsCalc(difficulty)}</h1>
+                <h1>Points</h1>
+            </div>
+            <i className="material-icons delete"
                 onClick={() => onHabitDeleteClick(habitId)}>
                 clear
             </i>
-                
-                <div>
-                    <h2>How Many Times You would like to {habit} per day: {expectedTimesPerDay}</h2>
-                    <h2>How Many Times You Actually {habit} today: {totalTimesCompleted}</h2>
-                   
-                    
-                </div>
-
+            
             </div>
         )
     }

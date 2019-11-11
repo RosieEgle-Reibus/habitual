@@ -1,47 +1,72 @@
 .App {
   text-align: center;
   margin: 0 auto;
+ 
+}
+
+.habitchild-container {
+  background-color: lightsteelblue;
+  display: flex;
+  flex-direction: column;
 }
 
 .habit-container {
   text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.reward-master-container {
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.reward-container {
-  text-align: left;
-    width: 400px;
-    height: 400px;
+    max-width: 1000px;
     margin: 0 auto;
     display: flex;
-  flex-direction: row;
-  
+    flex-wrap: wrap;
+    justify-content: center;
+   background-color: lightpink;
 }
 
+
 .item {
-  /* position: relative; */
   display: flex;
-  width: 100%;
+  width: 40%;
   padding: 12px 30px 12px 20px;
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
-  margin: 12px 0;
+  margin: 15px;
+  background-color: lightyellow;
 }
+
+
+.reward-master-container {
+  background-color: lightsteelblue;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.reward-container {
+ 
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  background-color: lightpink;
+}
+
+
+.reward {
+  display: flex;
+  width: 40%;
+  padding: 12px 30px 12px 20px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+  margin: 12px 10px;
+  background-color: lightyellow;
+}
+
+
 
 .material-icons.md-48 { font-size: 48px; }
 
 .material-icons.delete {
   color: #78909C;
   cursor: pointer;
-  position: absolute;
-  top: 12px;
-  right: 8px;
+ 
+ 
 }
 
 .material-icons.edit {

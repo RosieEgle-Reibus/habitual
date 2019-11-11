@@ -138,7 +138,7 @@ export default class Reward extends Component {
 
         const RewardListElements = this.state.rewardList.map((reward) => {
             return (
-                <div className="reward-master-container">
+                
                     <SingleReward
                         rewardId={reward._id}
                         reward={reward.reward}
@@ -146,11 +146,11 @@ export default class Reward extends Component {
                         onRewardDeleteClick={this.onRewardDeleteClick}
                         refreshRewardComponent={this.refreshRewardComponent}
                     />
-                </div>
+               
             )
         })
         return (
-            <div >
+            <div className="reward-master-container">
                 <EOD
                     potentialPoints={this.props.potentialPoints}
                     pointsEarned={this.props.pointsEarned} 

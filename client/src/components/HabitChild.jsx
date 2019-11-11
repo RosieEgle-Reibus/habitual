@@ -87,7 +87,7 @@ export default class HabitChild extends Component {
         const HabitListElements = habitList.map((habit) => {
             return (
 
-                <div>
+               
                     <SingleHabit
                         habitId={habit._id}
                         habit={habit.habit}
@@ -101,16 +101,13 @@ export default class HabitChild extends Component {
                         potentialPointsCalc={potentialPointsCalc}
                         pointsEarnedCalc={pointsEarnedCalc}
                     />
-                    <h1>Percent: {percentComplete(habit.totalTimesCompleted, habit.expectedTimesPerDay)}</h1>
-
-                </div>
 
             )
         })
 
 
         return (
-            <div >
+            <div className="habitchild-container">
                 <h1>Habit Child Hi</h1>
                 <h2>Total Points Earned {pointsEarned}</h2>
                 <h2>Total Potential Points {potentialPoints}</h2>

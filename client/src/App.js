@@ -148,7 +148,7 @@ export default class App extends Component {
         <div>
         {/* <h2>Total Points Earned {this.state.pointsEarned}</h2>
                 <h2>Total Potential Points {this.state.potentialPoints}</h2> */}
-        <h1> App Hi</h1>
+        <h1> Name OF IT</h1>
         <i className="material-icons md-48">face</i>
         <i className="material-icons md-48">ring_volume</i>
         <Router>
