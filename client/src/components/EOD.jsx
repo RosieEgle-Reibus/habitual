@@ -8,7 +8,7 @@ export default class EOD extends Component {
        } = this.props
         return (
             <div>
-               Hi EOD 
+               <h1>Hi EOD</h1>
               Potential Points: {potentialPoints}
               Points Earned: {pointsEarned}
             </div>

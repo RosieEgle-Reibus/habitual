@@ -6,7 +6,6 @@ const getAllHabits =() => {
         .then(res => res.data)
 }
 
-
 export {
     getAllHabits
 }

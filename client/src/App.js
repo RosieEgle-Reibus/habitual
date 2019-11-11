@@ -4,24 +4,11 @@ import axios from 'axios'
 // import Habits from './components/Habits.js'
 import './App.css'
 import Reward from './components/Reward'
-import Log from './components/HabitLog'
 import NavBar from './components/NavBar.jsx'
 import EOD from './components/EOD'
 import {getAllHabits} from './api/main.js'
 import HabitChild from './components/HabitChild.jsx'
-import HabitLog from './components/HabitLog';
 
-  // // testFunc = () => { this.state.habitList.map((habit) => {
-  // //     const previousState = this.state.potentialPoints
-  // //     let test= habit.expectedTimesPerDay + habit.totalTimesCompleted
-  // //     let addition = previousState + test
-  // //     this.setState({potentialPoints: addition})
-  // //     console.log(test)
-  // //     console.log(addition)
-  // //     console.log(previousState) 
-  // //     return addition    
-  // //     })
-  // // }
 
 export default class App extends Component {
   state = {
@@ -52,11 +39,11 @@ componentDidMount() {
         // console.log(allHabits)
         console.log('Habit List', this.state.habitList)
         this.setState({ habitList: res.data})
-        // this.totalPotentialPointsCalc()
-        // this.totalEarnedPointsCalc()
+        this.totalPotentialPointsCalc()
+         this.totalEarnedPointsCalc()
         // console.log('Potential Points', this.state.potentialPoints)
         // console.log('Points Earned', this.state.pointsEarned)
-        this.testFunc()
+        // this.testFunc()
       })
   }
 
@@ -163,17 +150,18 @@ componentDidMount() {
   render() {
     return (
       <div className="App">
-        <h2>Total Points Earned {this.state.pointsEarned}</h2>
-                <h2>Total Potential Points {this.state.potentialPoints}</h2>
+        {/* <h2>Total Points Earned {this.state.pointsEarned}</h2>
+                <h2>Total Potential Points {this.state.potentialPoints}</h2> */}
       <h1> App Hi</h1>
       <Router>
         <nav>
           <NavBar />
         </nav>
         <Switch>
-        <Route exact path="/reward" component={Reward} />
-        {/* <Route exact path="/eod" component={EOD} /> */}
-         <Route exact path="/eod" 
+        <Route exact path="/reward" render={(props) =>  <Reward {...props} potentialPoints={this.state.potentialPoints}
+        pointsEarned={this.state.pointsEarned} /> } />
+
+        <Route exact path="/eod" 
         render={(props) =>  <EOD {...props} potentialPoints={this.state.potentialPoints}
         pointsEarned={this.state.pointsEarned} />}
         />
