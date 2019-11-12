@@ -1,15 +1,19 @@
 .App {
   text-align: center;
-  margin: 0 auto;
+  margin: 20px auto;
   background-color: #2b877e;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: whitesmoke;
  
 }
+
 .title {
   margin: 0 auto;
   font-family: 'Liu Jian Mao Cao', cursive;
   color:  #074741;
   font-size: 120px;
   padding: 20px;
+  
 }
 .title-container {
   margin: 20px auto;
@@ -17,9 +21,29 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(245, 245, 245, 0.514);
-  width: 25%;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14),  0px 2px 1px -1px rgba(0,0,0,0.12);
+  width: 95%;
+  
+  border-radius: 10px;
 }
+
+.title-border {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28%;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14),  0px 2px 1px -1px rgba(0,0,0,0.12);
+  border: solid 2px whitesmoke;
+  
+  border-radius: 10px;
+}
+
+.tagline {
+  color: whitesmoke;
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: 50px;
+}
+
 
 .habitchild-container {
  
@@ -44,7 +68,7 @@
   padding: 12px 30px 12px 20px;
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
   margin: 15px;
-
+  border: solid 5px #d8ad45;
   border-radius: 10px;
 }
 
@@ -85,12 +109,12 @@
 .material-icons.md-48 { font-size: 48px; }
 
 .material-icons.delete {
-  color: #78909C;
+  color:  #074741;
   cursor: pointer;
 }
 
 .material-icons.edit {
-  color: rgba(120, 144, 156, 0.575);
+  color:  #074741;
   cursor: pointer;
   padding-left: 30px;
   font-size: 20px;
@@ -110,8 +134,11 @@ button {
   border-radius: 10px;
   font-size: 24px; 
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
-  background-color: #8f9c5e;
+  background-color: #d8ad45;
   color: whitesmoke;
+  border: solid 2px whitesmoke;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
 }
 
 
@@ -126,22 +153,58 @@ button {
 .today-reward {
   width: 300px;
   padding: 12px 30px 12px 20px;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+  /* box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12); */
   margin: 0 auto;
-  
+  font-family: 'Liu Jian Mao Cao', cursive;
   border-radius: 10px;
-  font-family: 'Lobster', cursive;
+  background-color: #d8ad45;
+  border: solid 2px whitesmoke;
 }
 
 .today-reward-font {
-  font-size: 75px;
+  font-size: 100px;
 }
 
 
 input[type=number] {
-  width: 100%;
+  width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   /* box-sizing: border-box; */
   background-color: rgba(245, 245, 245, 0.514);
+}
+
+nav a {
+  text-decoration: none;
+  color: #074741;
+  padding: 10px;
+  margin: 10px 1px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  background-color: rgba(245, 245, 245, 0.514);
+ 
+}
+
+.today-points {
+  display: flex;
+  justify-content: center; 
+  
+}
+.title-points {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 60px;
+}
+
+input[type=submit] {
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 20px; 
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+  background-color: #d8ad45;
+  color: whitesmoke;
+  border: solid 2px whitesmoke;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
 }

@@ -160,13 +160,13 @@ export default class Reward extends Component {
                     potentialPoints={this.props.potentialPoints}
                     pointsEarned={this.props.pointsEarned} 
                     /> */}
-                <h1>Today's Reward:</h1>
+                <h1 className="title-points">Today's Reward:</h1>
                 
                 <div className="today-reward">
                     <h1 className="today-reward-font">{this.randomReward()}</h1>
                 </div>
                 <h1 className="frac=small"><sup  >{pointsEarned}</sup>/<span >{potentialPoints}</span></h1>
-                <h2>{this.pointPercent()}%</h2>
+                
                 <h2>Great Job! You've earned it! You're a phenomal, amazing majectic, goal achiever!</h2>
                 {this.state.createReward ?
                     <form onSubmit={this.createNewReward}>

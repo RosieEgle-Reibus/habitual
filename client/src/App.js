@@ -10,6 +10,7 @@ import { getAllHabits } from './api/main.js'
 import HabitChild from './components/HabitChild.jsx'
 
 
+
 export default class App extends Component {
   state = {
     habitList: [],
@@ -149,13 +150,15 @@ export default class App extends Component {
         <div>
         {/* <h2>Total Points Earned {this.state.pointsEarned}</h2>
                 <h2>Total Potential Points {this.state.potentialPoints}</h2> */}
-        <div className="title-container"><h1 className="title">Habitual</h1></div>
-        <i className="material-icons md-48">face</i>
-        <i className="material-icons md-48">ring_volume</i>
+        <div className="title-border">
+          <div className="title-container"><h1 className="title">Habitual</h1></div>
+          </div>
         <Router>
           <nav>
             <NavBar />
           </nav>
+         
+        <h1 className="tagline">A Habit Tracking App</h1>
           <Switch>
             <Route exact path="/reward" render={(props) => <Reward {...props} potentialPoints={this.state.potentialPoints}
               pointsEarned={this.state.pointsEarned} />} />
