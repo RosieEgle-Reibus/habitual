@@ -13,7 +13,8 @@ export default class Reward extends Component {
         smallReward: [],
         mediumReward: [],
         bigReward: [],
-        randomReward: ''
+        randomReward: '',
+        showRewards: false
     }
     componentDidMount() {
         axios.get('/api/reward')
@@ -63,6 +64,10 @@ export default class Reward extends Component {
         const createReward = !this.state.createReward
         this.setState({ createReward })
     }
+    toggleRewards = () => {
+        const showRewards = !this.state.showRewards
+        this.setState({ showRewards })
+    }
 
     pointPercent = () => {
         const { potentialPoints } = this.props
@@ -75,7 +80,7 @@ export default class Reward extends Component {
 
     randomReward = () => {
         if (this.pointPercent() <= 50) {
-            const previousState = { ...this.state }
+
             let rand = Math.random()
             let totalRewards = this.state.smallReward.length
             let randIndex = Math.floor(rand * totalRewards)
@@ -138,30 +143,31 @@ export default class Reward extends Component {
 
         const RewardListElements = this.state.rewardList.map((reward) => {
             return (
-                
-                    <SingleReward
-                        rewardId={reward._id}
-                        reward={reward.reward}
-                        level={reward.level}
-                        onRewardDeleteClick={this.onRewardDeleteClick}
-                        refreshRewardComponent={this.refreshRewardComponent}
-                    />
-               
+
+                <SingleReward
+                    rewardId={reward._id}
+                    reward={reward.reward}
+                    level={reward.level}
+                    onRewardDeleteClick={this.onRewardDeleteClick}
+                    refreshRewardComponent={this.refreshRewardComponent}
+                />
+
             )
         })
         return (
             <div className="reward-master-container">
-                <EOD
+                {/* <EOD
                     potentialPoints={this.props.potentialPoints}
                     pointsEarned={this.props.pointsEarned} 
-                    />
-                  <h1>Today's Reward: {this.randomReward()}</h1>  
-
-                <h2>Potential Points: {potentialPoints}</h2>
-                <h2>Points Earned: {pointsEarned}</h2>
+                    /> */}
+                <h1>Today's Reward:</h1>
+                
+                <div className="today-reward">
+                    <h1 className="today-reward-font">{this.randomReward()}</h1>
+                </div>
+                <h1 className="frac=small"><sup  >{pointsEarned}</sup>/<span >{potentialPoints}</span></h1>
                 <h2>{this.pointPercent()}%</h2>
-                <h2>REWAAAAAARRRD Yo' Self</h2>
-                <button onClick={this.toggleCreateForm}>Add New Reward</button>
+                <h2>Great Job! You've earned it! You're a phenomal, amazing majectic, goal achiever!</h2>
                 {this.state.createReward ?
                     <form onSubmit={this.createNewReward}>
                         <label for="reward">Add a new way to reward yourself
@@ -183,12 +189,15 @@ export default class Reward extends Component {
                         </select>
                         <input type="Submit" value="Create New Reward" />
                     </form> : null}
-                    
+                <button onClick={this.toggleRewards}>See All Rewards</button>
+                {this.state.showRewards ?
                     <div className="reward-container">
-                {RewardListElements}
-                </div>
-               
-
+                        <i className="material-icons  add"
+                            onClick={() => this.toggleCreateForm()}>
+                            add_circle_outline
+            </i>
+                        {RewardListElements}
+                    </div> : null}
             </div>
         )
     }

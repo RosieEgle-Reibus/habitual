@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import SingleHabit from './SingleHabit.jsx'
-
+import {Link} from 'react-router-dom'
 import { getAllHabits } from '../api/main.js'
 
 export default class HabitChild extends Component {
@@ -108,10 +108,14 @@ export default class HabitChild extends Component {
 
         return (
             <div className="habitchild-container">
-                <h1>Habit Child Hi</h1>
-                <h2>Total Points Earned {pointsEarned}</h2>
-                <h2>Total Potential Points {potentialPoints}</h2>
-                <button onClick={this.toggleCreateForm}>Add New Reward</button>
+                <h1>Today's Points</h1>
+                <h1 className="frac"><sup  >{pointsEarned}</sup>/<span >{potentialPoints}</span></h1>
+               <Link to={`/reward`}><button>Reward Yo' Self</button></Link>
+
+                <i className="material-icons  add"
+                onClick={() => this.toggleCreateForm()}>
+                add_circle_outline
+            </i>
                 {this.state.createHabit ? 
                 <form onSubmit={this.createNewHabit}>
                     <label for="habit">Add a Habit</label>

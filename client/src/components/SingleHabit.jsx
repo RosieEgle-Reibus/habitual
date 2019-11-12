@@ -68,6 +68,9 @@ export default class SingleHabit extends Component {
         this.setState({ editHabit })
     }
 
+    onClickPlus = () => {
+        document.getElementById("totalTimesCompleted").stepUp(5)
+    }
 
 
 
@@ -114,14 +117,14 @@ export default class SingleHabit extends Component {
                         </form> : null}
 
                         <form onSubmit={this.changeSingleHabit}>
-                        <label for="totalTimesCompleted">Log how many times you completed it!</label>
                         <input
                             type="Number"
                             id="totalTimesCompleted"
                             placeholder="Actual Times Completed"
                             value={this.state.changeHabit.totalTimesCompleted}
                             onChange={this.onChangeToTimesCompleted} />
-                        <input type="Submit" value="Save Changes" />
+                       
+                        <input type="Submit" value="Add Completions" />
                     </form>
               
               
