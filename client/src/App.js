@@ -90,6 +90,7 @@ export default class App extends Component {
   totalPotentialPointsCalc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.potentialPoints
+      
       if (habit.difficulty <= 5) {
         let potPoints = habit.difficulty * 30
         let totalPotPoints = previousState + potPoints
@@ -107,6 +108,7 @@ export default class App extends Component {
   totalEarnedPointsCalc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.pointsEarned
+      
       if (habit.difficulty <= 5) {
         let potPoints = habit.difficulty * 30
         let percentDecimals = (habit.totalTimesCompleted / habit.expectedTimesPerDay)
@@ -130,6 +132,7 @@ export default class App extends Component {
   testFunc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.potentialPoints
+      // const previousState = 0
       let test = habit.expectedTimesPerDay + habit.totalTimesCompleted
       let addition = previousState + test
       this.setState({ potentialPoints: addition })
