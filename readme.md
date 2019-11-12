@@ -12,8 +12,8 @@ People have trouble sticking with healthy routines and turning them into positiv
 
 The target end user is someone who is motivated and wants to improve their lives by creating positive routines and habits for themselves.
 
-![ERD](images/ERD.jpg)
+![ERD](ERD.jpg)
 
-![WireFrame](images/WireFrame.jpg)
+![WireFrame](WireFrame.jpg)
 
-![User Mapping](images/UserMapping.jpg)
+![User Mapping](UserMapping.jpg)
