@@ -8,7 +8,7 @@ import NavBar from './components/NavBar.jsx'
 import EOD from './components/EOD'
 import { getAllHabits } from './api/main.js'
 import HabitChild from './components/HabitChild.jsx'
-
+import { totalEarnedPointsCalc } from './api/main.js'
 
 
 export default class App extends Component {
@@ -27,23 +27,21 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    //getAllHabits()
+    getAllHabits()
     this.refreshComponent()
     //  this.testFunc()
-   
+    this.totalPotentialPointsCalc()
+    this.totalEarnedPointsCalc()
   }
 
   refreshComponent = () => {
     axios.get('/api/habit')
       .then((res) => {
-        // console.log(allHabits)
-        console.log('Habit List', this.state.habitList)
+        
         this.setState({ habitList: res.data })
         this.totalPotentialPointsCalc()
         this.totalEarnedPointsCalc()
-        // console.log('Potential Points', this.state.potentialPoints)
-        // console.log('Points Earned', this.state.pointsEarned)
-        // this.testFunc()
+
       })
   }
 
@@ -90,7 +88,6 @@ export default class App extends Component {
   totalPotentialPointsCalc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.potentialPoints
-      
       if (habit.difficulty <= 5) {
         let potPoints = habit.difficulty * 30
         let totalPotPoints = previousState + potPoints
@@ -108,7 +105,6 @@ export default class App extends Component {
   totalEarnedPointsCalc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.pointsEarned
-      
       if (habit.difficulty <= 5) {
         let potPoints = habit.difficulty * 30
         let percentDecimals = (habit.totalTimesCompleted / habit.expectedTimesPerDay)
@@ -132,7 +128,6 @@ export default class App extends Component {
   testFunc = () => {
     this.state.habitList.map((habit) => {
       const previousState = this.state.potentialPoints
-      // const previousState = 0
       let test = habit.expectedTimesPerDay + habit.totalTimesCompleted
       let addition = previousState + test
       this.setState({ potentialPoints: addition })
@@ -151,8 +146,6 @@ export default class App extends Component {
     return (
       <div className="App">
         <div>
-        {/* <h2>Total Points Earned {this.state.pointsEarned}</h2>
-                <h2>Total Potential Points {this.state.potentialPoints}</h2> */}
         <div className="title-border">
           <div className="title-container"><h1 className="title">Habitual</h1></div>
           </div>
@@ -160,16 +153,12 @@ export default class App extends Component {
           <nav>
             <NavBar />
           </nav>
-         
         <h1 className="tagline">A Habit Tracking App</h1>
+        <h1 className="title-points">Today's Points:</h1>
+          <h1 className="frac"><sup  >{this.state.pointsEarned}</sup>/<span >{this.state.potentialPoints}</span></h1>
           <Switch>
             <Route exact path="/reward" render={(props) => <Reward {...props} potentialPoints={this.state.potentialPoints}
               pointsEarned={this.state.pointsEarned} />} />
-
-            {/* <Route exact path="/eod"
-              render={(props) => <EOD {...props} potentialPoints={this.state.potentialPoints}
-                pointsEarned={this.state.pointsEarned} />}
-            /> */}
             <Route exact path="/EOD" component={EOD}/>
             <Route exact path="/habitchild" component={HabitChild} />
             <HabitChild
@@ -189,11 +178,8 @@ export default class App extends Component {
               potentialPointsCalc={this.potentialPointsCalc}
               pointsEarnedCalc={this.pointsEarnedCalc}
               totalPotentialPointsCalc={this.totalPotentialPointsCalc}
-              totalEarnedPointsCalc={this.state.totalEarnedPointsCalc}
+              //totalEarnedPointsCalc={this.state.totalEarnedPointsCalc}
             />
-
-
-
           </Switch>
         </Router>
       </div>
