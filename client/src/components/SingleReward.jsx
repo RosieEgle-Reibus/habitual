@@ -55,11 +55,16 @@ export default class SingleReward extends Component {
         } = this.props
         return (
             <div key={rewardId} className="reward">
-                <div>
-                <h1>{reward} <i className="material-icons  edit"
+                 <i className="material-icons  edit"
                 onClick={() => this.toggleEditForm()}>
                 edit
-            </i></h1>
+            </i>
+            <i className="material-icons delete"
+                onClick={() => onRewardDeleteClick(rewardId)}>
+                clear
+            </i>
+                <div>  
+                <h1>{reward}</h1>
             {this.state.editReward ? 
                 <form onSubmit={this.changeSingleReward}>
                     <input
@@ -79,14 +84,10 @@ export default class SingleReward extends Component {
                 </form> :  null }
             </div>
               <div>
-                <h2>Level of Reward: {level}</h2>
+                <h3>Level of Reward: {level}</h3>
                 </div>
+            
                
-
-                <i className="material-icons delete"
-                onClick={() => onRewardDeleteClick(rewardId)}>
-                clear
-            </i>
             </div>
         )
     }
