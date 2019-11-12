@@ -17,11 +17,12 @@ The target end user is someone who is motivated and wants to improve their lives
 [ERD](https://drive.google.com/file/d/0B7LVQpTXmuAhWmtjWWVUWlpDVzVXb3VkendGd2g4Wmd2aks4/view?usp=sharing)
 
 ![ERD](ERD.jpg)
-<img src="ERD.jpg">
+
+<img src="https://github.com/sunnysideupegle/habits-project-three/blob/master/ERD.JPG?raw=true">
 
 
 ![Wireframe](WireFrame.jpg)
 
-<img src="WireFrame.jpg">
+<img src="https://github.com/sunnysideupegle/habits-project-three/blob/master/WireFrame.JPG?raw=true">
 
 [WireFrame](https://drive.google.com/file/d/0B7LVQpTXmuAhYlBHSjJkOUdDMnp5Y2U3YTE4WWZ2bTJsSUFn/view?usp=sharing)
