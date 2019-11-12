@@ -1,7 +1,7 @@
 const navData = [
     {name: "Habit"},
-    {name: "Reward"},
-    {name: "EOD"}
+    {name: "Reward"}
+    
     
 ]
 

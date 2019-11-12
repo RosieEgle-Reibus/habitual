@@ -98,18 +98,24 @@ export default class SingleHabit extends Component {
             <h2>Difficulty: {difficulty}</h2>
             {this.state.editHabit ?
                         <form onSubmit={this.changeSingleHabit}>
+                            <label for="habit">Habit Name</label>
                             <input
                                 type="String"
                                 placeholder="Habit"
+                                id="habit"
                                 value={this.state.changeHabit.habit}
                                 onChange={this.onChangeToHabit} />
+                                <label for="expected">Expected Times</label>
                             <input
                                 type="Number"
                                 placeholder="Times Expected"
+                                id="expected"
                                 value={this.state.changeHabit.expectedTimesPerDay}
                                 onChange={this.onChangeToTimesExpected} />
+                                <label for="difficulty">Difficulty</label>
                             <input
                                 type="Number"
+                                id="difficulty"
                                 placeholder="Difficulty"
                                 value={this.state.changeHabit.difficulty}
                                 onChange={this.onChangeToDifficulty} />
