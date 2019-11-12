@@ -7,11 +7,6 @@ export default class NavBar extends Component {
         navData: navData,
         showNav: false
     }
-
-    toggleNavBar = () => {
-        const showNav = !this.state.showNav
-        this.setState({ showNav })
-      }
     render() {
         const NavDataElements = this.state.navData.map((nav) => {
            return ( <Link to={`/${nav.name}`}>{nav.name}</Link> )
