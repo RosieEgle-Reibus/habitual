@@ -15,10 +15,10 @@ The target end user is someone who is motivated and wants to improve their lives
 ## Images
 
 ![ERD](ERD.jpg)
-<img src="ERD.jpg"/>
+<img src="ERD.jpg"></img>
 
 ![User Mapping](UserMapping.jpg)
-<img src="UserMapping.jpg"/>
+<img src="UserMapping.jpg"></img>
 
 ![Wireframe](WireFrame.jpg)
-<img src="WireFrame.jpg"/>
+<img src="WireFrame.jpg"></img>
