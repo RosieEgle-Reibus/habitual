@@ -33,7 +33,6 @@ export default class HabitChild extends Component {
     createNewHabit = (event) => {
         event.preventDefault()
         axios.post('/api/habit', this.state.newHabit)
-
             .then(() => {
                 const { refreshComponent } = this.props
                 refreshComponent()
@@ -107,10 +106,9 @@ export default class HabitChild extends Component {
         return (
             <div className="habitchild-container">
                 <h1 className="title-points">Today's Points:</h1>
+                <h1 className="frac"><sup  >{pointsEarned}</sup>/<span >{potentialPoints}</span></h1>
                 <div className="today-points">
-                
-          <h1 className="frac"><sup  >{pointsEarned}</sup>/<span >{potentialPoints}</span></h1>
-               <Link to={`/reward`}><button>Reward Yo' Self</button></Link>
+               <Link to={`/reward`}><button className="reward-button">Reward Yo' Self</button></Link>
                </div>
                 <i className="material-icons  add"
                 onClick={() => this.toggleCreateForm()}>

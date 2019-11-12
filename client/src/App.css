@@ -142,7 +142,6 @@ nav a:hover {
 }
 
 
-
 .material-icons.md-48 { font-size: 48px; }
 
 .material-icons.delete {
@@ -162,6 +161,7 @@ nav a:hover {
   cursor: pointer;
   font-size: 60px;
   align-items: center;
+  margin: 10px auto;
 }
 
 button {
@@ -178,14 +178,20 @@ button {
   font-weight: 300;
 }
 
-
-.frac {
-  font-size: 75px;
+.reward-button {
+  font-size: 36px;
+  margin: 30px auto;
 }
 
+
 .frac {
+  font-size: 100px;
+  margin: 0 auto;
+}
+
+/* .frac {
   font-size: 60px;
-}
+} */
 
 .today-reward {
   width: 300px;
