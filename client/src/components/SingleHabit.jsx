@@ -91,7 +91,7 @@ export default class SingleHabit extends Component {
         return (
             <div key={habitId} className="item">
                 <div>
-                <h1>{habit}  <i className="material-icons  edit"
+                <h1 className="name">{habit}  <i className="material-icons  edit"
                 onClick={() => this.toggleEditForm()}>
                 edit
             </i></h1>
@@ -126,7 +126,7 @@ export default class SingleHabit extends Component {
                         <input
                             type="Number"
                             id="totalTimesCompleted"
-                            placeholder="Actual Times Completed"
+                            placeholder="Reps"
                             value={this.state.changeHabit.totalTimesCompleted}
                             onChange={this.onChangeToTimesCompleted} />
                        

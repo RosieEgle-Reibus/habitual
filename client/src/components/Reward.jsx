@@ -167,7 +167,7 @@ export default class Reward extends Component {
                 </div>
                 <h1 className="frac=small"><sup  >{pointsEarned}</sup>/<span >{potentialPoints}</span></h1>
                 
-                <h2>Great Job! You've earned it! You're a phenomal, amazing majectic, goal achiever!</h2>
+                {/* <h2>Great Job! You've earned it! You're a phenomal, amazing majectic, goal achiever!</h2> */}
                 {this.state.createReward ?
                     <form onSubmit={this.createNewReward}>
                         <label for="reward">Add a new way to reward yourself
@@ -189,13 +189,15 @@ export default class Reward extends Component {
                         </select>
                         <input type="Submit" value="Create New Reward" />
                     </form> : null}
-                <button onClick={this.toggleRewards}>See All Rewards</button>
-                {this.state.showRewards ?
-                    <div className="reward-container">
-                        <i className="material-icons  add"
+                    <i className="material-icons  add"
                             onClick={() => this.toggleCreateForm()}>
                             add_circle_outline
             </i>
+                <button onClick={this.toggleRewards}>See All Rewards</button>
+               
+                {this.state.showRewards ?
+                    <div className="reward-container">
+                      
                         {RewardListElements}
                     </div> : null}
             </div>

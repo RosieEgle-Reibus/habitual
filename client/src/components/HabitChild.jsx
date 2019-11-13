@@ -115,7 +115,7 @@ export default class HabitChild extends Component {
                 add_circle_outline
             </i>
                 {this.state.createHabit ? 
-                <form onSubmit={this.createNewHabit}>
+                <form onSubmit={this.createNewHabit} className="form-all">
                     <label for="habit">Add a Habit</label>
                     <input
                         type="string"
@@ -124,18 +124,18 @@ export default class HabitChild extends Component {
                         name="newHabit.name"
                         value={this.state.newHabit.habit}
                         onChange={this.onCreateHabit} />
-                    <label for="Texpected">How many times a day do you think you can realistically complete the habit?</label>
+                    <label for="Texpected">How many times a day do you think you can realistically complete the habit each day?</label>
                     <input
                         type="number"
                         id="Texpected"
                         placeholder="Times Expected"
                         value={this.state.newHabit.expectedTimesPerDay}
                         onChange={this.onCreateTimesExpected} />
-                    <label for="difficulty">How hard is it to make yourself do it?</label>
+                    <label for="difficulty">How hard is it to make yourself do it on a scale of 1 to 10?</label>
                     <input
                         type="number"
                         id="difficulty"
-                        placeholder="Times Expected"
+                        placeholder="Difficulty"
                         value={this.state.newHabit.difficulty}
                         onChange={this.onCreateDifficulty} />
                     <input type="Submit" value="Make a New Habit!" />

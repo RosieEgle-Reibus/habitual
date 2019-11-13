@@ -3,13 +3,13 @@ import congratulationsData from '../staticCongratulationsData.jsx'
 
 export default class Congratulations extends Component {
     state = {
-        congratsData = congratulationsData
+        congratsData: congratulationsData
     }
 
+
     render() {
-        const CongratsDataElement = this.state.congratsData.map((congrats) => {
+        
             
-        })
 
         return (
             <div>
