@@ -283,3 +283,10 @@ label {
   display: flex;
   justify-content: space-between;
 }
+
+.select-style {
+  background-color: rgba(245, 245, 245, 0.244);
+  color: whitesmoke;
+  font-size: 30px;
+  margin-bottom: 30px;
+}

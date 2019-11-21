@@ -78,7 +78,8 @@ export default class SingleReward extends Component {
                     <select id="level"
                         name="level"
                         value={this.state.changeReward.level}
-                        onChange={this.onChangeLevel}>
+                        onChange={this.onChangeLevel}
+                        className='select-style'>
                         <option value="Small">Small</option>
                         <option value="Medium">Medium</option>
                         <option value="Big">Big</option>

@@ -182,7 +182,9 @@ export default class Reward extends Component {
                         <select id="level"
                             name="level"
                             value={this.state.level}
-                            onChange={this.onCreateLevel}>
+                            onChange={this.onCreateLevel} 
+                            className='select-style'>
+                            <option></option>
                             <option value="Small">Small</option>
                             <option value="Medium">Medium</option>
                             <option value="Big">Big</option>

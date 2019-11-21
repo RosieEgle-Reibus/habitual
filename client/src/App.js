@@ -23,7 +23,7 @@ const initialState = {
   },
   potentialPoints: 0,
   pointsEarned: 0,
-  showNav: false
+  
 }
 export default class App extends Component {
   state = { ...initialState }
@@ -126,8 +126,6 @@ export default class App extends Component {
         <div>
           <Router>
               <nav>
-               
-             
                 <NavBar /> 
               </nav>
             
