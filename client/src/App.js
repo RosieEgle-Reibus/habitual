@@ -10,6 +10,7 @@ import { getAllHabits } from './api/main.js'
 import HabitChild from './components/HabitChild.jsx'
 import { totalEarnedPointsCalc } from './api/main.js'
 import { totalPotentialPointsCalc } from './api/main.js'
+import { percentComplete } from './api/main.js'
 
 const initialState = {
   habitList: [],
@@ -23,14 +24,13 @@ const initialState = {
   },
   potentialPoints: 0,
   pointsEarned: 0,
-  
+
 }
 export default class App extends Component {
   state = { ...initialState }
 
   componentDidMount() {
     getAllHabits()
-    //this.refreshComponent()
   }
 
   refreshComponent = () => {
@@ -38,12 +38,7 @@ export default class App extends Component {
       .then((res) => {
         const newState = { ...initialState }
         newState.habitList = res.data
-
         this.setState(newState)
-        // this.totalPotentialPointsCalc()
-        // this.totalEarnedPointsCalc()
-        // this.testFunc()
-        // totalEarnedPointsCalc(this.state.habitList)
         this.setPointsEarned()
         this.setPointPotential()
       })
@@ -63,13 +58,6 @@ export default class App extends Component {
       .then(() => {
         this.refreshComponent()
       })
-  }
-
-
-  percentComplete = (totalTimesCompleted, expectedTimesPerDay) => {
-    let percentDecimals = (totalTimesCompleted / expectedTimesPerDay) * 100
-    let percent = percentDecimals.toFixed()
-    return percent
   }
 
   potentialPointsCalc = (difficulty) => {
@@ -103,32 +91,15 @@ export default class App extends Component {
     this.setState({ showNav })
   }
 
-  // testFunc = () => {
-  //   this.state.habitList.map((habit) => {
-  //     const previousState = this.state.potentialPoints
-  //     let addExpectedAndCompleted = habit.expectedTimesPerDay + habit.totalTimesCompleted
-  //     let addExpectedAndPotentialAndPreviousState = previousState + addExpectedAndCompleted
-  //     this.setState({ potentialPoints: addExpectedAndPotentialAndPreviousState })
-  //     console.log('expected', habit.expectedTimesPerDay)
-  //     console.log('completed', habit.totalTimesCompleted)
-  //     console.log('addExpectedAndCompleted', addExpectedAndCompleted)
-  //     console.log('previousState', previousState)
-  //     console.log('addExpectedAndPotentialAndPreviousState', addExpectedAndPotentialAndPreviousState)
-  //     console.log(this.state.potentialPoints)
-  //     return addExpectedAndPotentialAndPreviousState
-  //   })
-  // }
-
-
   render() {
     return (
       <div className="App">
         <div>
           <Router>
-              <nav>
-                <NavBar /> 
-              </nav>
-            
+            <nav>
+              <NavBar />
+            </nav>
+
             <div className="title-border">
               <div className="title-container">
                 <h1 className="title">Habitual</h1>
@@ -159,8 +130,8 @@ export default class App extends Component {
                 percentComplete={this.percentComplete}
                 potentialPointsCalc={this.potentialPointsCalc}
                 pointsEarnedCalc={this.pointsEarnedCalc}
-                totalPotentialPointsCalc={this.totalPotentialPointsCalc}
-                totalEarnedPointsCalc={totalEarnedPointsCalc}
+                // totalPotentialPointsCalc={this.totalPotentialPointsCalc}
+                // totalEarnedPointsCalc={totalEarnedPointsCalc}
               />
             </Switch>
           </Router>

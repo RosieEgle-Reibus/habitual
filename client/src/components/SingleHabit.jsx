@@ -85,7 +85,8 @@ export default class SingleHabit extends Component {
             potentialPoints,
             pointsEarned,
             pointsEarnedCalc,
-            potentialPointsCalc
+            potentialPointsCalc,
+            percentComplete
         } = this.props
 
         return (
@@ -144,7 +145,6 @@ export default class SingleHabit extends Component {
                 onClick={() => onHabitDeleteClick(habitId)}>
                 clear
             </i>
-            
             </div>
         )
     }
