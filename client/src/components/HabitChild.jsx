@@ -67,12 +67,10 @@ export default class HabitChild extends Component {
     render() {
         const {
             habitList,
-            newHabit,
             potentialPoints,
             pointsEarned,
             refreshComponent,
             onHabitDeleteClick,
-            percentComplete,
             potentialPointsCalc,
             pointsEarnedCalc
         } = this.props
@@ -91,13 +89,10 @@ export default class HabitChild extends Component {
                     pointsEarned={pointsEarned}
                     potentialPointsCalc={potentialPointsCalc}
                     pointsEarnedCalc={pointsEarnedCalc}
-                    percentComplete={percentComplete}
+                    
                 />
-
             )
         })
-
-
         return (
             <div className="habitchild-container">
                 <h1 className="title-points">Today's Points:</h1>

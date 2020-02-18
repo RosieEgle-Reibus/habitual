@@ -86,18 +86,17 @@ export default class SingleHabit extends Component {
             pointsEarned,
             pointsEarnedCalc,
             potentialPointsCalc,
-            percentComplete
         } = this.props
 
         return (
             <div key={habitId} className="item">
                 <div>
-                <h1 className="name">{habit}  <i className="material-icons  edit"
-                onClick={() => this.toggleEditForm()}>
-                edit
+                    <h1 className="name">{habit}  <i className="material-icons  edit"
+                        onClick={() => this.toggleEditForm()}>
+                        edit
             </i></h1>
-            <h2>Difficulty: {difficulty}</h2>
-            {this.state.editHabit ?
+                    <h2>Difficulty: {difficulty}</h2>
+                    {this.state.editHabit ?
                         <form onSubmit={this.changeSingleHabit}>
                             <label for="habit">Habit Name</label>
                             <input
@@ -106,14 +105,14 @@ export default class SingleHabit extends Component {
                                 id="habit"
                                 value={this.state.changeHabit.habit}
                                 onChange={this.onChangeToHabit} />
-                                <label for="expected">Expected Times</label>
+                            <label for="expected">Expected Times</label>
                             <input
                                 type="Number"
                                 placeholder="Times Expected"
                                 id="expected"
                                 value={this.state.changeHabit.expectedTimesPerDay}
                                 onChange={this.onChangeToTimesExpected} />
-                                <label for="difficulty">Difficulty</label>
+                            <label for="difficulty">Difficulty</label>
                             <input
                                 type="Number"
                                 id="difficulty"
@@ -123,27 +122,24 @@ export default class SingleHabit extends Component {
                             <input type="Submit" value="Save Changes" />
                         </form> : null}
 
-                        <form onSubmit={this.changeSingleHabit}>
+                    <form onSubmit={this.changeSingleHabit}>
                         <input
                             type="Number"
                             id="totalTimesCompleted"
                             placeholder="Reps"
                             value={this.state.changeHabit.totalTimesCompleted}
                             onChange={this.onChangeToTimesCompleted} />
-                       
+
                         <input type="Submit" value="Add Completions" />
                     </form>
-              
-              
-            </div>
-            <div>
-           
-                <h1> {pointsEarnedCalc(difficulty, totalTimesCompleted, expectedTimesPerDay)}/{potentialPointsCalc(difficulty)}</h1>
-                <h1>Points</h1>
-            </div>
-            <i className="material-icons delete"
-                onClick={() => onHabitDeleteClick(habitId)}>
-                clear
+                </div>
+                <div>
+                    <h1> {pointsEarnedCalc(difficulty, totalTimesCompleted, expectedTimesPerDay)}/{potentialPointsCalc(difficulty)}</h1>
+                    <h1>Points</h1>
+                </div>
+                <i className="material-icons delete"
+                    onClick={() => onHabitDeleteClick(habitId)}>
+                    clear
             </i>
             </div>
         )

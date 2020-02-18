@@ -80,7 +80,6 @@ export default class Reward extends Component {
 
     randomReward = () => {
         if (this.pointPercent() <= 50) {
-
             let rand = Math.random()
             let totalRewards = this.state.smallReward.length
             let randIndex = Math.floor(rand * totalRewards)

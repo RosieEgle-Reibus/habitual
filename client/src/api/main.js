@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 let habitList = []
 
 const getAllHabits =() => {
@@ -8,6 +9,37 @@ const getAllHabits =() => {
         })
 }
 
+//calculates total POTENTIAL points for individual habit
+const potentialPointsCalc = (difficulty) => {
+  if (difficulty <= 5) {
+    let potentialPoints = difficulty * 30
+    return potentialPoints
+  } else {
+    let potentialPoints = difficulty * 50
+    return potentialPoints
+  }
+}
+
+
+//calculates total EARNED points for individual habit
+const pointsEarnedCalc = (difficulty, totalTimesCompleted, expectedTimesPerDay) => {
+  if (difficulty <= 5) {
+    let potentialPoints = difficulty * 30
+    let percentDecimals = (totalTimesCompleted / expectedTimesPerDay)
+    let pointsEarnedDecimal = potentialPoints * percentDecimals
+    let pointsEarned = pointsEarnedDecimal.toFixed()
+    return pointsEarned
+  } else {
+    let potentialPoints = difficulty * 50
+    let percentDecimals = (totalTimesCompleted / expectedTimesPerDay)
+    let pointsEarnedDecimal = potentialPoints * percentDecimals
+    let pointsEarned = pointsEarnedDecimal.toFixed()
+    return pointsEarned
+  }
+}
+
+
+//calculates total cumulative points EARNED for all habit completions
 const totalEarnedPointsCalc = (habitList) => {
     let totalPoints = 0
     habitList.forEach((habit) => {
@@ -23,46 +55,29 @@ const totalEarnedPointsCalc = (habitList) => {
         totalPoints += potPoints * percent
       }
     })
-
     return totalPoints;
   }
 
+//calculates total cumulative POTENTIAL points for all habits
   const totalPotentialPointsCalc = (habitList) => {
     let totalPoints = 0
     habitList.forEach((habit) => {
       if (habit.difficulty <= 5) {
         let potPoints = habit.difficulty * 30
         totalPoints += potPoints 
-        // console.log('In Potential Function')
-        // console.log('Diificulty', habit.difficulty)
-        // console.log("potentialPoints", potPoints)
-        // console.log('totalPoints', totalPoints)
       } else {
         let potPoints = habit.difficulty * 50
         totalPoints += potPoints
-        // console.log('In Potential Function')
-        // console.log('Diificulty', habit.difficulty)
-        // console.log("potentialPoints", potPoints)
-        // console.log('totalPoints', totalPoints)
       }
     })
-
     return totalPoints;
   }
 
-
-  const percentComplete = (totalTimesCompleted, expectedTimesPerDay) => {
-    let percentDecimals = (totalTimesCompleted / expectedTimesPerDay) * 100
-    let percent = percentDecimals.toFixed()
-    return percent
-  }
-
-
-
 export {
     getAllHabits,
-    percentComplete,
     totalEarnedPointsCalc,
     totalPotentialPointsCalc,
+    potentialPointsCalc,
+    pointsEarnedCalc
     
 }
